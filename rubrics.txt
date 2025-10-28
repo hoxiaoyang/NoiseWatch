@@ -1,0 +1,13 @@
+Within class assessing criteria: 
+
+1.Innovation over existing technology(base on tech or more efficiency in energy and cost) identify at least 1 limitation of current solution
+
+2.Relevance to both IOT and Cloud. Sufficient ground for the project to be based on cloud (prove local server Not sufficient)
+
+3.Presentation-logic of the solution, identify problem, emphasis selling point, thus bring out the PoC, which demonstrate how the poc solve the existing solution’s limitation. 
+
+If fulfill these 3 criteria, ideally get the full score.
+
+additional criteria for dell prize:
+
+1. Business impact 2.advance usage of cloud computing
