@@ -1,4 +1,4 @@
-# NoiseWatch
+# NoiseWatcher
 Codebase for SUTD's 50.046 Cloud Computing and Internet of Things project
 
 To foster a safe and conducive living environment for residents in HDB flats, we propose the implementation of a Noise Classification and Logging System powered by IoT and cloud technologies.
