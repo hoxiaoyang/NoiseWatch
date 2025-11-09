@@ -10,4 +10,5 @@ If fulfill these 3 criteria, ideally get the full score.
 
 additional criteria for dell prize:
 
-1. Business impact 2.advance usage of cloud computing
+1. Business impact 
+2. Advanced usage of cloud computing
