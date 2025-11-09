@@ -1,0 +1,1 @@
+We need to set up Raspberry Pi as the main IoT thing. ESP32 will all send data here. RPi will use MQTT to interact with IoT core to publish the sound sensor data. We will then call Lambda function from the IoT rule to send data to Lambda function (which is alr configured to store data in DynamoDB)
