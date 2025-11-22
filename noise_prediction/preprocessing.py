@@ -286,9 +286,12 @@ def process_all_files(input_base_dir, output_base_dir, frame_size=30, overlap_pe
 
             plot_frequency_spectrum(time_df, freq_df, title=f"{class_name.capitalize()} - {file_name}", directory=spectrogram_directory)
             
-            # Save frequency domain CSV
+            # Save frequency domain CSV, for each frame_id save a separate CSV file
             base_name = os.path.splitext(file_name)[0]
-            freq_csv_path = os.path.join(output_freq_dir, f"{base_name}_fft.csv")
-            freq_df.to_csv(freq_csv_path, index=False)
-            
-            print(f"Saved to {freq_csv_path} (Sampling rate: {sampling_rate} Hz)")
+            for frame_id in freq_df['frame_id'].unique():
+                frame_data = freq_df[freq_df['frame_id'] == frame_id]
+                output_file_name = f"{base_name}_frame{frame_id}.csv"
+                output_path = os.path.join(output_freq_dir, output_file_name)
+                frame_data.to_csv(output_path, index=False)
+                print(f"Saved frequency domain data to {output_path}")
+                

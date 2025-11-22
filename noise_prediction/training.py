@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import numpy as np
+from sklearn.model_selection import train_test_split
 
 def create_model_dataset(freq_domain_dir, output_dir, train_split=0.7, val_split=0.15):
     """
@@ -12,7 +13,6 @@ def create_model_dataset(freq_domain_dir, output_dir, train_split=0.7, val_split
         train_split: Proportion for training (0.7 = 70%)
         val_split: Proportion for validation (0.15 = 15%)
     """
-    from sklearn.model_selection import train_test_split
     
     classes = ['background', 'shout']
     
