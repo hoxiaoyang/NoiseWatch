@@ -1,9 +1,11 @@
 __pycache__/
-*.env
-*.venv
+.env
+.venv
+node_modules/
+.vscode/
 
 # Preprocessed data folders
-model_data/
-sample_data/processed/
-sample_data/structured/
-sample_data/labelled/
+noise_prediction/model_data/
+noise_prediction/sample_data/processed/
+noise_prediction/sample_data/structured/
+noise_prediction/sample_data/labelled/
