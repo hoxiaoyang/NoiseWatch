@@ -8,13 +8,13 @@ def create_model_dataset(freq_domain_dir, output_dir, train_split=0.7, val_split
     Split frequency domain data into train/val/test sets.
     
     Args:
-        freq_domain_dir: Directory with background/ and shout/ frequency data
+        freq_domain_dir: Directory with background/ and shout/ and drill/ frequency data
         output_dir: Where to save train/val/test splits
         train_split: Proportion for training (0.7 = 70%)
         val_split: Proportion for validation (0.15 = 15%)
     """
     
-    classes = ['background', 'shout']
+    classes = ['background', 'shout', 'drill']
     
     for class_name in classes:
         class_dir = os.path.join(freq_domain_dir, class_name)
@@ -52,8 +52,8 @@ def load_dataset_for_training(data_dir, split='train'):
     X_list = []
     y_list = []
     
-    classes = ['background', 'shout']
-    label_map = {'background': 0, 'shout': 1}
+    classes = ['background', 'shout', 'drill']
+    label_map = {'background': 0, 'shout': 1, 'drill': 2}
     
     for class_name in classes:
         class_dir = os.path.join(data_dir, split, class_name)
@@ -134,8 +134,8 @@ def load_dataset_with_features(data_dir, split='train'):
     X_list = []
     y_list = []
     
-    classes = ['background', 'shout']
-    label_map = {'background': 0, 'shout': 1}
+    classes = ['background', 'shout', 'drill']
+    label_map = {'background': 0, 'shout': 1, 'drill': 2}
     
     for class_name in classes:
         class_dir = os.path.join(data_dir, split, class_name)

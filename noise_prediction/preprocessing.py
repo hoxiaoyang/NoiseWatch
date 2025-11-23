@@ -75,14 +75,15 @@ def process_unstructured_data_to_csv(file_name, time_interval):
         print(f"CSV file saved as {csv_file_name}")
 
 
-def get_labelled_csv(csv_file_name):
+def get_labelled_csv(csv_file_name, type='shout'):
     """
     Convert the csv into labelled csv files based on time intervals. 
-    Label data as "shout" at: 0s - 5s, 10s - 15s, 20s - 25s
+    Label data as "shout"/"drill" at: 0s - 5s, 10s - 15s, 20s - 25s
     Label data as "background" at: 5s - 10s, 15s - 20s
     
     Args:
         csv_file_name: File name of the processed CSV data.
+        type: 'shout' or 'drill' to indicate the type of noise event.
     """
 
     # Add "_structured" to file name if not already present
@@ -112,19 +113,30 @@ def get_labelled_csv(csv_file_name):
     directory = os.path.dirname(os.path.dirname(csv_file_name))
     labelled_dir = os.path.join(directory, 'labelled')
     shout_dir = os.path.join(labelled_dir, 'shout')
+    drill_dir = os.path.join(labelled_dir, 'drill')
     background_dir = os.path.join(labelled_dir, 'background')
     
     os.makedirs(shout_dir, exist_ok=True)
+    os.makedirs(drill_dir, exist_ok=True)
     os.makedirs(background_dir, exist_ok=True)
     
     # Create 5 separate CSV files
-    intervals = [
-        (0, interval_length, f"{base_name}_1.csv", "shout", shout_dir),
-        (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
-        (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "shout", shout_dir),
-        (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
-        (4 * interval_length, df_length, f"{base_name}_5.csv", "shout", shout_dir),
-    ]
+    if type == 'drill':
+        intervals = [
+            (0, interval_length, f"{base_name}_1.csv", "drill", drill_dir),
+            (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
+            (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "drill", drill_dir),
+            (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
+            (4 * interval_length, df_length, f"{base_name}_5.csv", "drill", drill_dir),
+        ]
+    else:  # type == 'shout'
+        intervals = [
+            (0, interval_length, f"{base_name}_1.csv", "shout", shout_dir),
+            (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
+            (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "shout", shout_dir),
+            (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
+            (4 * interval_length, df_length, f"{base_name}_5.csv", "shout", shout_dir),
+        ]
     
     for start_idx, end_idx, filename, label, output_dir in intervals:
         # Extract subset of dataframe
@@ -248,14 +260,14 @@ def plot_frequency_spectrum(time_df, freq_df, title="Frequency Spectrum", direct
 
 def process_all_files(input_base_dir, output_base_dir, frame_size=30, overlap_percent=50):
     """
-    Process all CSV files in background and shout folders.
+    Process all CSV files in background, shout and drill folders.
     Apply FFT to convert from time domain to frequency domain.
     
     Args:
-        input_base_dir: Base directory containing background/ and shout/ CSV folders
+        input_base_dir: Base directory containing background/ and shout/ and drill/ CSV folders
         output_base_dir: Where to save frequency domain files
     """
-    classes = ['background', 'shout']
+    classes = ['background', 'shout', 'drill']
     
     for class_name in classes:
         input_dir = os.path.join(input_base_dir, class_name)
