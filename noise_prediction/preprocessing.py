@@ -75,7 +75,7 @@ def process_unstructured_data_to_csv(file_name, time_interval):
         print(f"CSV file saved as {csv_file_name}")
 
 
-def get_labelled_csv(csv_file_name, type='shout'):
+def get_labelled_csv(csv_file_name, type='shout', labelling_interval=5):
     """
     Convert the csv into labelled csv files based on time intervals. 
     Label data as "shout"/"drill" at: 0s - 5s, 10s - 15s, 20s - 25s
@@ -102,7 +102,7 @@ def get_labelled_csv(csv_file_name, type='shout'):
 
     # Divide df into 6 intervals based on the labelling scheme
     df_length = len(df)
-    interval_length = df_length // 6
+    interval_length = df_length // labelling_interval  # Length of each interval for label
     
     # Get base name for output files (remove '_structured' suffix if present)
     base_name = os.path.splitext(os.path.basename(csv_file_name))[0]

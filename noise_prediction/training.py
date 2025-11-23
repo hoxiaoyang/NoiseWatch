@@ -74,58 +74,82 @@ def load_dataset_for_training(data_dir, split='train'):
     
     return X, y
 
-def extract_spectral_features(freq_df):
+def get_feature_normalization_params(data_dir):
     """
-    Extract fixed-length features from frequency domain data.
-    Works regardless of number of frequency bins!
+    Compute mean and std for each feature across training set.
     
     Returns:
-        features: 1D array of fixed length
+        feature_mean: Array of means for each feature
+        feature_std: Array of stds for each feature
     """
+    all_features = []
+    classes = ['background', 'shout', 'drill']
+    
+    for class_name in classes:
+        class_dir = os.path.join(data_dir, 'train', class_name)
+        files = [f for f in os.listdir(class_dir) if f.endswith('.csv')]
+        
+        for file_name in files:
+            file_path = os.path.join(class_dir, file_name)
+            df = pd.read_csv(file_path)
+            # Extract features WITHOUT normalization
+            features = extract_spectral_features_raw(df)
+            all_features.append(features)
+    
+    all_features = np.array(all_features)
+    feature_mean = np.mean(all_features, axis=0)
+    feature_std = np.std(all_features, axis=0)
+    
+    return feature_mean, feature_std
 
-    # # Try removing 0 Hz component if present
-    # if freq_df['frequency'].values[0] == 0.0:
-    #     freq_df = freq_df.iloc[1:]
-
+def extract_spectral_features_raw(freq_df):
+    """Extract features without normalization."""
     magnitude = freq_df['magnitude'].values
     frequency = freq_df['frequency'].values
+
+    # Remove 0.0 Hz component if present
+    if frequency[0] == 0.0:
+        magnitude = magnitude[1:]
+        frequency = frequency[1:]
     
     features = []
     
     # Statistical features (8 features)
-    features.append(np.mean(magnitude))           # Mean magnitude
-    features.append(np.std(magnitude))            # Std deviation
-    features.append(np.max(magnitude))            # Peak magnitude
-    features.append(np.median(magnitude))         # Median
-    features.append(np.percentile(magnitude, 25)) # 25th percentile
-    features.append(np.percentile(magnitude, 75)) # 75th percentile
-    features.append(np.sum(magnitude))            # Total energy
-    features.append(np.var(magnitude))            # Variance
+    features.append(np.mean(magnitude))
+    features.append(np.std(magnitude))
+    features.append(np.max(magnitude))
+    features.append(np.median(magnitude))
+    features.append(np.percentile(magnitude, 25))
+    features.append(np.percentile(magnitude, 75))
+    features.append(np.sum(magnitude))
+    features.append(np.var(magnitude))
     
-    # Spectral features (5 features)
-    # Spectral centroid (center of mass of spectrum)
+    # Spectral features
     spectral_centroid = np.sum(frequency * magnitude) / np.sum(magnitude)
     features.append(spectral_centroid)
     
-    # Dominant frequency (frequency with max magnitude)
     dominant_freq = frequency[np.argmax(magnitude)]
     features.append(dominant_freq)
     
-    # Spectral rolloff (frequency below which 85% of energy is contained)
     cumsum = np.cumsum(magnitude)
     rolloff_threshold = 0.85 * cumsum[-1]
     rolloff_idx = np.where(cumsum >= rolloff_threshold)[0][0]
     spectral_rolloff = frequency[rolloff_idx]
     features.append(spectral_rolloff)
     
-    # Spectral bandwidth
     spectral_bandwidth = np.sqrt(np.sum(((frequency - spectral_centroid) ** 2) * magnitude) / np.sum(magnitude))
     features.append(spectral_bandwidth)
     
-    # Zero crossing rate (approximation from frequency)
-    features.append(np.sum(magnitude[frequency < 100]))  # Low freq energy
+    features.append(np.sum(magnitude[frequency < 100]))
     
     return np.array(features)
+
+def extract_spectral_features(freq_df, feature_mean, feature_std):
+    """Extract and normalize features using pre-computed stats."""
+    features = extract_spectral_features_raw(freq_df)
+    # Normalize each feature independently
+    features = (features - feature_mean) / (feature_std + 1e-8)  # Add epsilon to avoid division by zero
+    return features
 
 def load_dataset_with_features(data_dir, split='train'):
     """
@@ -136,7 +160,9 @@ def load_dataset_with_features(data_dir, split='train'):
     
     classes = ['background', 'shout', 'drill']
     label_map = {'background': 0, 'shout': 1, 'drill': 2}
-    
+
+    feature_mean, feature_std = get_feature_normalization_params(data_dir)
+
     for class_name in classes:
         class_dir = os.path.join(data_dir, split, class_name)
         
@@ -151,7 +177,7 @@ def load_dataset_with_features(data_dir, split='train'):
             df = pd.read_csv(file_path)
             
             # Extract fixed-length features
-            features = extract_spectral_features(df)
+            features = extract_spectral_features(df, feature_mean, feature_std)
             X_list.append(features)
             y_list.append(label_map[class_name])
     
