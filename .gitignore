@@ -1,3 +1,9 @@
 __pycache__/
 *.env
 *.venv
+
+# Preprocessed data folders
+**/model_data/
+**/sample_data/processed/
+**/sample_data/structured/
+**/sample_data/labelled/

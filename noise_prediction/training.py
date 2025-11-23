@@ -82,6 +82,11 @@ def extract_spectral_features(freq_df):
     Returns:
         features: 1D array of fixed length
     """
+
+    # # Try removing 0 Hz component if present
+    # if freq_df['frequency'].values[0] == 0.0:
+    #     freq_df = freq_df.iloc[1:]
+
     magnitude = freq_df['magnitude'].values
     frequency = freq_df['frequency'].values
     

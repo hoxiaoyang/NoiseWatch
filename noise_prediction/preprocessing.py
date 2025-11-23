@@ -39,14 +39,14 @@ def process_unstructured_data_to_csv(file_name, time_interval):
 
                 # These values might be wrong, due to the transmission delay and overlapping of data packets when we log values from the microcontroller. We are not able to parse a clean data set from the raw data log.
                 # Hence, we need to check that data is NEVER above 4096 (12-bit ADC max value). If it is, we set it to the previous value.
-                # We assume that the value will never drop to below 300 (tested values range from 1500+ to 3000+) If it is, we set it to the previous value as well.
+                # We assume that the value will never drop to below 1000 (tested values range from 2000+ to 3000+) If it is, we set it to the previous value as well.
                 if analog_value > 4096:
                     if len(analog_values) > 0:
                         analog_value = analog_values[-1]
                     else:
                         analog_value = 0.0  # If it's the first value, set to 0
 
-                if analog_value <= 10:
+                if analog_value <= 1000:
                     if len(analog_values) > 0:
                         analog_value = analog_values[-1]
                     else:
@@ -78,8 +78,8 @@ def process_unstructured_data_to_csv(file_name, time_interval):
 def get_labelled_csv(csv_file_name):
     """
     Convert the csv into labelled csv files based on time intervals. 
-    Label data as "background" at: 0s - 5s, 10s - 15s, 20s - 25s
-    Label data as "shout" at: 5s - 10s, 15s - 20s, 25s - 30s
+    Label data as "shout" at: 0s - 5s, 10s - 15s, 20s - 25s
+    Label data as "background" at: 5s - 10s, 15s - 20s
     
     Args:
         csv_file_name: File name of the processed CSV data.
@@ -119,12 +119,11 @@ def get_labelled_csv(csv_file_name):
     
     # Create 5 separate CSV files
     intervals = [
-        (0, interval_length, f"{base_name}_1.csv", "background", background_dir),
-        (interval_length, 2 * interval_length, f"{base_name}_2.csv", "shout", shout_dir),
-        (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "background", background_dir),
-        (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv", "shout", shout_dir),
-        (4 * interval_length, df_length, f"{base_name}_5.csv", "background", background_dir),
-        (5 * interval_length, df_length, f"{base_name}_6.csv", "shout", shout_dir)
+        (0, interval_length, f"{base_name}_1.csv", "shout", shout_dir),
+        (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
+        (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "shout", shout_dir),
+        (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
+        (4 * interval_length, df_length, f"{base_name}_5.csv", "shout", shout_dir),
     ]
     
     for start_idx, end_idx, filename, label, output_dir in intervals:
@@ -138,8 +137,6 @@ def get_labelled_csv(csv_file_name):
         output_path = os.path.join(output_dir, filename)
         subset_df.to_csv(output_path, index=False)
         
-        print(f"Saved {output_path} with label '{label}'")
-
 def fourier_transform(df, frame_size, overlap_percent):
     """
     Transform time-domain data to frequency domain using windowed FFT.
@@ -293,5 +290,3 @@ def process_all_files(input_base_dir, output_base_dir, frame_size=30, overlap_pe
                 output_file_name = f"{base_name}_frame{frame_id}.csv"
                 output_path = os.path.join(output_freq_dir, output_file_name)
                 frame_data.to_csv(output_path, index=False)
-                print(f"Saved frequency domain data to {output_path}")
-                
