@@ -3,7 +3,7 @@ __pycache__/
 *.venv
 
 # Preprocessed data folders
-**/model_data/
-**/sample_data/processed/
-**/sample_data/structured/
-**/sample_data/labelled/
+model_data/
+sample_data/processed/
+sample_data/structured/
+sample_data/labelled/
