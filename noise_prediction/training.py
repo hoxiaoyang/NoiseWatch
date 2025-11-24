@@ -107,10 +107,10 @@ def extract_spectral_features_raw(freq_df):
     magnitude = freq_df['magnitude'].values
     frequency = freq_df['frequency'].values
 
-    # Remove 0.0 Hz component if present
-    if frequency[0] == 0.0:
-        magnitude = magnitude[1:]
-        frequency = frequency[1:]
+    # # Remove 0.0 Hz component if present
+    # if frequency[0] == 0.0:
+    #     magnitude = magnitude[1:]
+    #     frequency = frequency[1:]
     
     features = []
     
