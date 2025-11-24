@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-def create_model_dataset(freq_domain_dir, output_dir, train_split=0.7, val_split=0.15):
+def create_model_dataset(freq_domain_dir, output_dir, train_split=0.8, val_split=0.1):
     """
     Split frequency domain data into train/val/test sets.
     
