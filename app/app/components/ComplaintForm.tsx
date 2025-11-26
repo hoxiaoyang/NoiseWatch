@@ -13,7 +13,6 @@ interface ComplaintFormProps {
 
 export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoading = false }) => {
   const [formData, setFormData] = useState({
-    postalCode: '',
     address: '',
     unitNumber: '',
     startTime: '',
@@ -26,10 +25,11 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
 
   // Auto-fetch address from OneMap when postal code reaches 6 digits
   useEffect(() => {
-    if (formData.postalCode.length === 6) {
-      fetchAddressByPostalCode(formData.postalCode);
+    const v = formData.address.trim();
+    if (/^\d{6}$/.test(v)) {
+      fetchAddressByPostalCode(v);
     }
-  }, [formData.postalCode]);
+  }, [formData.address]);
 
   // OneMap API fetch (JS version of your Python code)
   const fetchAddressByPostalCode = async (postalCode: string) => {
@@ -60,10 +60,6 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
 
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<string, string>> = {};
-
-    if (!formData.postalCode.trim() || formData.postalCode.length !== 6) {
-      newErrors.postalCode = 'Valid postal code is required';
-    }
 
     if (!formData.unitNumber.trim()) {
       newErrors.unitNumber = 'Unit number is required';
@@ -110,24 +106,17 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-5">
 
-          {/* Postal Code */}
-          <Input
-            label="Postal Code"
-            placeholder="e.g., 560123"
-            value={formData.postalCode}
-            onChange={(e) => handleChange('postalCode', e.target.value)}
-            error={errors.postalCode}
-            disabled={isLoading}
-            helperText="Enter your 6-digit HDB postal code"
-          />
-
           {/* Auto-filled Address */}
           <Input
-            label="Address (Auto-filled)"
-            placeholder="Full address will appear here"
-            value={formData.address}
-            disabled
-            helperText={isFetchingAddress ? 'Fetching address...' : ''}
+          label="Address"
+          placeholder="Enter postal code or full address"
+          value={formData.address}
+          onChange={(e) => handleChange('address', e.target.value)}
+          helperText={
+          /^\d{6}$/.test(formData.address)
+          ? isFetchingAddress ? 'Fetching address...' : 'Postal code detected'
+          : 'Type a 6-digit postal code to auto-fill'
+          }
           />
 
           {/* Unit Number only */}
