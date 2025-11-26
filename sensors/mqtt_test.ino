@@ -2,6 +2,7 @@
 #include "SSD1306Wire.h"
 #include "PubSubClient.h"
 #include "WiFi.h"
+#include "time.h"
 
 // KY-037 pins
 #define ANALOG_PIN 35  // AO → ADC-capable pin
@@ -13,10 +14,16 @@ const char* wifi_password = "wifi_pass";
 const char* mqtt_server = "172.20.10.2";  
 const char* analog_topic = "analog";
 const char* digital_topic = "digital";
+const char* timestamp_topic = "timestamp";
 const char* mqtt_username = "cloud"; 
 const char* mqtt_password = "123"; 
 const char* clientID = "esp_1";
 const int port = 1883;
+
+// use NTP to get time
+const char* ntpServer = "pool.ntp.org";
+const long  gmtOffset_sec = 8 * 3600;
+const int   daylightOffset_sec = 0;
 
 // OLED setup
 SSD1306Wire display(0x3C, 4, 5); // SDA, SCL
@@ -27,7 +34,25 @@ int analogValues[MAX_POINTS] = {0};
 int digitalValues[MAX_POINTS] = {0};
 
 WiFiClient wifiClient;
-PubSubClient client(mqtt_server, port, wifiClient); 
+PubSubClient client(mqtt_server, port, wifiClient);
+
+String getFormattedTime() {
+  struct tm timeinfo;
+  
+  uint32_t ms = millis() % 1000; 
+
+  if(!getLocalTime(&timeinfo)){
+    return "Time Not Synced";
+  }
+  
+  char timeString[64];
+  strftime(timeString, 64, "%Y-%m-%d %H:%M:%S", &timeinfo);
+
+  char fullTimeString[70];
+  snprintf(fullTimeString, sizeof(fullTimeString), "%s.%03u", timeString, ms);
+
+  return String(fullTimeString);
+}
 
 void connect_MQTT() {
   Serial.print("Connecting to ");
@@ -42,6 +67,9 @@ void connect_MQTT() {
   Serial.println("WiFi connected");
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
+
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  Serial.println("Time synchronization started...");
 
   if (client.connect(clientID, mqtt_username, mqtt_password)) {
     Serial.println("Connected to MQTT Broker!");
@@ -77,13 +105,23 @@ void loop() {
   int analogValue = analogRead(ANALOG_PIN);
   int digitalValue = digitalRead(DIGITAL_PIN);
 
-  Serial.print("Analog: ");
+  String currentTimestamp = getFormattedTime();
+
+  Serial.print("Timestamp: ");
+  Serial.print(currentTimestamp);
+  Serial.print("  | Analog: ");
   Serial.print(analogValue);
   Serial.print("  | Digital: ");
   Serial.println(digitalValue);
 
-  String a = "A: " + String((int)analogValue);
-  String d = "D: " + String((int)digitalValue);
+  if (client.publish(timestamp_topic, currentTimestamp.c_str())) {
+    Serial.println("Timestamp sent!");
+  } else {
+    Serial.println("Timestamp failed to send.");
+    client.connect(clientID, mqtt_username, mqtt_password);
+    delay(10);
+    client.publish(timestamp_topic, currentTimestamp.c_str());
+  }
 
   if (client.publish(analog_topic, String(analogValue).c_str())) {
     Serial.println("Analog sent!");
@@ -94,13 +132,13 @@ void loop() {
     client.publish(analog_topic, String(analogValue).c_str());
   }
 
-  if (client.publish(digital_topic, String(d).c_str())) {
+  if (client.publish(digital_topic, String(digitalValue).c_str())) {
     Serial.println("Digital sent!");
   } else {
     Serial.println("Digital failed to send. Reconnecting to MQTT Broker and trying again");
     client.connect(clientID, mqtt_username, mqtt_password);
     delay(10);
-    client.publish(digital_topic, String(d).c_str());
+    client.publish(digital_topic, String(digitalValue).c_str());
   }
 
 
