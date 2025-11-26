@@ -2,6 +2,7 @@ import paho.mqtt.client as mqtt
 import json
 import threading
 import time
+import requests
 
 DATA_FILE = 'sensor_data.csv'
 
@@ -19,7 +20,24 @@ CURRENT_SENDER_ID = "unknown_sender"
 def send_to_lambda_blocking(final_payload):
     time.sleep(0.5)
 
-    print("\n=======================================================")
+    lambda_data = final_payload
+
+    API_ENDPOINT = "lambda_end_point"
+
+    response = requests.post(
+    API_ENDPOINT,
+    json=lambda_data,
+    headers={'Content-Type': 'application/json'}
+    )
+
+    if response.status_code == 200:
+        result = response.json()
+        print(f"Predicted label: {result['predicted_label']}")
+    else:
+        print(f"Error: {response.status_code}")
+        print(response.text)
+        print("\n=======================================================")
+
     print(f"LAMBDA SEND COMPLETE (THREAD):")
     print(f"Start Time: {final_payload['start_time']}")
     print(f"Total Points: {len(final_payload['points'])}")
@@ -66,7 +84,7 @@ def on_message(client, userdata, msg):
                 
                 final_payload = {
                     "start_time": data_buffer[0]['timestamp'],
-                    "sender_id": CURRENT_SENDER_ID,
+                    "house_id": CURRENT_SENDER_ID,
                     "points": data_buffer
                 }
                 
