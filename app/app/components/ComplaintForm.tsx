@@ -58,6 +58,15 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
     }
   };
 
+  const noiseOptions = [
+    "Shouting",
+    "Drilling",
+    "Other",
+  ];
+
+  const [selectedOption, setSelectedOption] = useState<string>(""); 
+  const [customNoise, setCustomNoise] = useState('');
+
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<string, string>> = {};
 
@@ -72,8 +81,10 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
       newErrors.endTime = 'End time must be after start time';
     }
 
-    if (!formData.description.trim() || formData.description.trim().length < 10) {
-      newErrors.description = 'Please provide at least 10 characters';
+    if (!formData.description.trim()) {
+      newErrors.description = 'Description is required';
+    } else if (formData.description.trim().length < 1) {
+      newErrors.description = 'Please provide a description of the noise disturbance';
     }
 
     setErrors(newErrors);
@@ -147,18 +158,71 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
             />
           </div>
 
-          {/* Description */}
-          <TextArea
-            label="Description of Noise"
-            placeholder="Describe the noise disturbance"
-            value={formData.description}
-            onChange={(e) => handleChange('description', e.target.value)}
-            error={errors.description}
-            rows={4}
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Description of Noise
+            </label>
 
-          {/* Submit */}
-          <Button type="submit" variant="primary" size="lg" fullWidth disabled={isLoading}>
+            {/* Dropdown */}
+            <select
+              value={selectedOption}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSelectedOption(value);
+
+                if (value === "Other") {
+                  handleChange('description', customNoise); // keep custom input
+                } else {
+                  handleChange('description', value); // save selected option
+                }
+              }}
+              disabled={isLoading}
+              className="border rounded px-3 py-2 w-full mb-2"
+            >
+              {noiseOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+
+            {/* Custom input shows only if "Other" is selected */}
+            {selectedOption === "Other" && (
+              <Input
+                placeholder="e.g., Loud music, banging sounds"
+                value={customNoise}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setCustomNoise(value);
+                  handleChange('description', value); // update formData
+                }}
+                disabled={isLoading}
+                error={errors.description}
+              />
+            )}
+
+            <p className="text-gray-500 text-sm mt-1">
+              Provide as much detail as possible to help us match your complaint
+            </p>
+          </div>
+
+
+          <div className="flex items-center gap-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+            <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <p className="text-sm text-blue-800">
+              Your report will be processed securely. We will match it with our noise monitoring data to identify the source.
+            </p>
+          </div>
+
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
+            disabled={isLoading}
+          >
             {isLoading ? 'Searching for matches...' : 'Submit Complaint'}
           </Button>
         </form>
