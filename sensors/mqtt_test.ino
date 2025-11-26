@@ -3,6 +3,7 @@
 #include "PubSubClient.h"
 #include "WiFi.h"
 #include "time.h"
+#include <ArduinoJson.h>
 
 // KY-037 pins
 #define ANALOG_PIN 35  // AO → ADC-capable pin
@@ -11,10 +12,9 @@
 const char* ssid = "wifi_username";                 
 const char* wifi_password = "wifi_pass"; 
 
-const char* mqtt_server = "172.20.10.2";  
-const char* analog_topic = "analog";
-const char* digital_topic = "digital";
-const char* timestamp_topic = "timestamp";
+const char* mqtt_server = "172.20.10.3";  
+const char* IDENTIFIER_TOPIC = "esp1_identifier";
+const char* DATA_TOPIC = "esp1_data";
 const char* mqtt_username = "cloud"; 
 const char* mqtt_password = "123"; 
 const char* clientID = "esp_1";
@@ -73,6 +73,12 @@ void connect_MQTT() {
 
   if (client.connect(clientID, mqtt_username, mqtt_password)) {
     Serial.println("Connected to MQTT Broker!");
+    if (client.publish(IDENTIFIER_TOPIC, clientID)) {
+      Serial.print("Sent ClientID: ");
+      Serial.println(clientID);
+    } else {
+      Serial.println("Failed to get ClientID.");
+    }
   } else {
     Serial.println("Connection to MQTT Broker failed...");
   }
@@ -96,7 +102,10 @@ void setup() {
 void loop() {
   // Keep MQTT connection alive
   if (!client.connected()) {
-    client.connect(clientID, mqtt_username, mqtt_password);
+    if (client.connect(clientID, mqtt_username, mqtt_password)) {
+      Serial.println("Reconnected!");
+      client.publish(IDENTIFIER_TOPIC, clientID); 
+    }
   }
   client.loop();
 
@@ -114,31 +123,25 @@ void loop() {
   Serial.print("  | Digital: ");
   Serial.println(digitalValue);
 
-  if (client.publish(timestamp_topic, currentTimestamp.c_str())) {
-    Serial.println("Timestamp sent!");
-  } else {
-    Serial.println("Timestamp failed to send.");
-    client.connect(clientID, mqtt_username, mqtt_password);
-    delay(10);
-    client.publish(timestamp_topic, currentTimestamp.c_str());
-  }
+  StaticJsonDocument<200> doc; 
 
-  if (client.publish(analog_topic, String(analogValue).c_str())) {
-    Serial.println("Analog sent!");
-  } else {
-    Serial.println("Analog failed to send. Reconnecting to MQTT Broker and trying again");
-    client.connect(clientID, mqtt_username, mqtt_password);
-    delay(10);
-    client.publish(analog_topic, String(analogValue).c_str());
-  }
+  doc["timestamp"] = currentTimestamp;
+  doc["analog"] = analogValue;
+  doc["digital"] = digitalValue;
 
-  if (client.publish(digital_topic, String(digitalValue).c_str())) {
-    Serial.println("Digital sent!");
+  char jsonBuffer[200];
+  serializeJson(doc, jsonBuffer);
+
+  if (client.publish(DATA_TOPIC, jsonBuffer)) {
+    Serial.print("JSON Payload sent to ");
+    Serial.print(DATA_TOPIC);
+    Serial.print(": ");
+    Serial.println(jsonBuffer);
   } else {
-    Serial.println("Digital failed to send. Reconnecting to MQTT Broker and trying again");
+    Serial.println("Payload failed to send. Reconnecting to MQTT Broker and trying again");
     client.connect(clientID, mqtt_username, mqtt_password);
     delay(10);
-    client.publish(digital_topic, String(digitalValue).c_str());
+    client.publish(DATA_TOPIC, jsonBuffer);
   }
 
 
@@ -159,5 +162,5 @@ void loop() {
   }
 
   display.display();
-  delay(300);
+  delay(10);
 }
