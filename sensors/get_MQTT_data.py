@@ -3,6 +3,7 @@ import json
 import threading
 import time
 import requests
+import datetime
 
 DATA_FILE = 'sensor_data.csv'
 
@@ -40,8 +41,8 @@ def send_to_lambda_blocking(final_payload):
 
     print(f"LAMBDA SEND COMPLETE (THREAD):")
     print(f"Start Time: {final_payload['start_time']}")
-    print(f"Total Points: {len(final_payload['points'])}")
-    print(f"Payload Preview: {json.dumps(final_payload['points'][:3], indent=2)} ...")
+    print(f"Total Points: {len(final_payload['data'])}")
+    print(f"Payload Preview: {json.dumps(final_payload['data'][:3], indent=2)} ...")
     print("=======================================================\n")
 
 def on_connect(client, userdata, flags, rc):
@@ -68,14 +69,26 @@ def on_message(client, userdata, msg):
         timestamp = data.get("timestamp", "N/A")
         analog_value = data.get("analog", "N/A")
         digital_value = data.get("digital", "N/A")
+
+        try:
+            analog_value_float = float(analog_value)
+        except (ValueError, TypeError):
+            analog_value_float = 0.0
+
+        try:
+            dt_object = datetime.datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S.%f")
+            timestamp_ms_float = dt_object.timestamp() * 1000.0
+        except ValueError:
+            print(f"Warning: Timestamp format error for '{timestamp}'. Using current system time.")
+            timestamp_ms_float = time.time() * 1000.0
+
         if buffer_counter == 0 and digital_value == 1:
             buffer_counter = 1 
             print(f"\n*** TRIGGER START! @ {timestamp} ***")
         if buffer_counter > 0:
             point = {
-                "timestamp": timestamp,
-                "analog": analog_value,
-                "digital": digital_value
+                "timestamp": timestamp_ms_float,
+                "analog_value": analog_value_float
             }
             
             data_buffer.append(point)
@@ -85,7 +98,7 @@ def on_message(client, userdata, msg):
                 final_payload = {
                     "start_time": data_buffer[0]['timestamp'],
                     "house_id": CURRENT_SENDER_ID,
-                    "points": data_buffer
+                    "data": data_buffer
                 }
                 
                 # prevent calling lamda block the refresh of buffer
