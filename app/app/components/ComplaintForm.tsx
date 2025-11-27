@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/Card';
 import { Button } from './ui/Button';
 import { Input, TextArea } from './ui/Input';
@@ -12,36 +12,70 @@ interface ComplaintFormProps {
 }
 
 export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoading = false }) => {
-  const [formData, setFormData] = useState<ComplaintFormData>({
-    blockNumber: '',
+  const [formData, setFormData] = useState({
+    address: '',
     unitNumber: '',
     startTime: '',
     endTime: '',
     description: '',
   });
 
-  const [errors, setErrors] = useState<Partial<Record<keyof ComplaintFormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
+  const [isFetchingAddress, setIsFetchingAddress] = useState(false);
+
+  // Auto-fetch address from OneMap when postal code reaches 6 digits
+  useEffect(() => {
+    const v = formData.address.trim();
+    if (/^\d{6}$/.test(v)) {
+      fetchAddressByPostalCode(v);
+    }
+  }, [formData.address]);
+
+  // OneMap API fetch (JS version of your Python code)
+  const fetchAddressByPostalCode = async (postalCode: string) => {
+    try {
+      setIsFetchingAddress(true);
+      const res = await fetch(
+        `https://www.onemap.gov.sg/api/common/elastic/search?searchVal=${postalCode}&returnGeom=Y&getAddrDetails=Y`
+      );
+      const data = await res.json();
+
+      if (data?.results?.length > 0) {
+        const address = data.results[0].ADDRESS;
+
+        setFormData((prev) => ({
+          ...prev,
+          address,
+        }));
+      } else {
+        setFormData((prev) => ({ ...prev, address: '' }));
+        setErrors((prev) => ({ ...prev, postalCode: 'Invalid postal code. Address not found.' }));
+      }
+    } catch (err) {
+      setErrors((prev) => ({ ...prev, postalCode: 'Failed to fetch address. Try again.' }));
+    } finally {
+      setIsFetchingAddress(false);
+    }
+  };
+
+  const noiseOptions = [
+    "Shouting",
+    "Drilling",
+    "Other",
+  ];
+
+  const [selectedOption, setSelectedOption] = useState<string>(""); 
+  const [customNoise, setCustomNoise] = useState('');
 
   const validateForm = (): boolean => {
-    const newErrors: Partial<Record<keyof ComplaintFormData, string>> = {};
-
-    if (!formData.blockNumber.trim()) {
-      newErrors.blockNumber = 'Block number is required';
-    }
+    const newErrors: Partial<Record<string, string>> = {};
 
     if (!formData.unitNumber.trim()) {
       newErrors.unitNumber = 'Unit number is required';
-    } else if (!/^\d{2}-\d{2,4}$/.test(formData.unitNumber.trim())) {
-      newErrors.unitNumber = 'Please use format: ##-### (e.g., 05-123)';
     }
 
-    if (!formData.startTime) {
-      newErrors.startTime = 'Start time is required';
-    }
-
-    if (!formData.endTime) {
-      newErrors.endTime = 'End time is required';
-    }
+    if (!formData.startTime) newErrors.startTime = 'Start time is required';
+    if (!formData.endTime) newErrors.endTime = 'End time is required';
 
     if (formData.startTime && formData.endTime && formData.startTime >= formData.endTime) {
       newErrors.endTime = 'End time must be after start time';
@@ -49,8 +83,8 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
 
     if (!formData.description.trim()) {
       newErrors.description = 'Description is required';
-    } else if (formData.description.trim().length < 10) {
-      newErrors.description = 'Please provide at least 10 characters';
+    } else if (formData.description.trim().length < 1) {
+      newErrors.description = 'Please provide a description of the noise disturbance';
     }
 
     setErrors(newErrors);
@@ -64,11 +98,10 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
     }
   };
 
-  const handleChange = (field: keyof ComplaintFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
+  const handleChange = (field: string, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
     if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
+      setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
@@ -77,32 +110,37 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
       <CardHeader>
         <CardTitle>Report Noise Disturbance</CardTitle>
         <p className="text-sm text-gray-600 mt-2">
-          Please provide details about the noise disturbance you experienced. Your information is secure and confidential.
+          Enter your postal code and we will automatically retrieve your full address.
         </p>
       </CardHeader>
+
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Input
-              label="Your Block Number"
-              placeholder="e.g., 123"
-              value={formData.blockNumber}
-              onChange={(e) => handleChange('blockNumber', e.target.value)}
-              error={errors.blockNumber}
-              disabled={isLoading}
-              helperText="Enter your HDB block number"
-            />
-            <Input
-              label="Your Unit Number"
-              placeholder="e.g., 05-123"
-              value={formData.unitNumber}
-              onChange={(e) => handleChange('unitNumber', e.target.value)}
-              error={errors.unitNumber}
-              disabled={isLoading}
-              helperText="Format: ##-###"
-            />
-          </div>
 
+          {/* Auto-filled Address */}
+          <Input
+          label="Address"
+          placeholder="Enter postal code or full address"
+          value={formData.address}
+          onChange={(e) => handleChange('address', e.target.value)}
+          helperText={
+          /^\d{6}$/.test(formData.address)
+          ? isFetchingAddress ? 'Fetching address...' : 'Postal code detected'
+          : 'Type a 6-digit postal code to auto-fill'
+          }
+          />
+
+          {/* Unit Number only */}
+          <Input
+            label="Unit Number"
+            placeholder="e.g., 05-123"
+            value={formData.unitNumber}
+            onChange={(e) => handleChange('unitNumber', e.target.value)}
+            error={errors.unitNumber}
+            disabled={isLoading}
+          />
+
+          {/* Time Inputs */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               type="datetime-local"
@@ -110,8 +148,6 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
               value={formData.startTime}
               onChange={(e) => handleChange('startTime', e.target.value)}
               error={errors.startTime}
-              disabled={isLoading}
-              helperText="When did the noise start?"
             />
             <Input
               type="datetime-local"
@@ -119,21 +155,57 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
               value={formData.endTime}
               onChange={(e) => handleChange('endTime', e.target.value)}
               error={errors.endTime}
-              disabled={isLoading}
-              helperText="When did the noise end?"
             />
           </div>
 
-          <TextArea
-            label="Description of Noise"
-            placeholder="Please describe the noise disturbance (e.g., loud music, drilling, shouting, etc.)"
-            value={formData.description}
-            onChange={(e) => handleChange('description', e.target.value)}
-            error={errors.description}
-            disabled={isLoading}
-            rows={4}
-            helperText="Provide as much detail as possible to help us match your complaint"
-          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Description of Noise
+            </label>
+
+            {/* Dropdown */}
+            <select
+              value={selectedOption}
+              onChange={(e) => {
+                const value = e.target.value;
+                setSelectedOption(value);
+
+                if (value === "Other") {
+                  handleChange('description', customNoise); // keep custom input
+                } else {
+                  handleChange('description', value); // save selected option
+                }
+              }}
+              disabled={isLoading}
+              className="border rounded px-3 py-2 w-full mb-2"
+            >
+              {noiseOptions.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
+
+            {/* Custom input shows only if "Other" is selected */}
+            {selectedOption === "Other" && (
+              <Input
+                placeholder="e.g., Loud music, banging sounds"
+                value={customNoise}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setCustomNoise(value);
+                  handleChange('description', value); // update formData
+                }}
+                disabled={isLoading}
+                error={errors.description}
+              />
+            )}
+
+            <p className="text-gray-500 text-sm mt-1">
+              Provide as much detail as possible to help us match your complaint
+            </p>
+          </div>
+
 
           <div className="flex items-center gap-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
