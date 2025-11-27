@@ -74,35 +74,7 @@ def load_dataset_for_training(data_dir, split='train'):
     
     return X, y
 
-def get_feature_normalization_params(data_dir):
-    """
-    Compute mean and std for each feature across training set.
-    
-    Returns:
-        feature_mean: Array of means for each feature
-        feature_std: Array of stds for each feature
-    """
-    all_features = []
-    classes = ['background', 'shout', 'drill']
-    
-    for class_name in classes:
-        class_dir = os.path.join(data_dir, 'train', class_name)
-        files = [f for f in os.listdir(class_dir) if f.endswith('.csv')]
-        
-        for file_name in files:
-            file_path = os.path.join(class_dir, file_name)
-            df = pd.read_csv(file_path)
-            # Extract features WITHOUT normalization
-            features = extract_spectral_features_raw(df)
-            all_features.append(features)
-    
-    all_features = np.array(all_features)
-    feature_mean = np.mean(all_features, axis=0)
-    feature_std = np.std(all_features, axis=0)
-    
-    return feature_mean, feature_std
-
-def extract_spectral_features_raw(freq_df):
+def extract_spectral_features(freq_df):
     """Extract features without normalization."""
     magnitude = freq_df['magnitude'].values
     frequency = freq_df['frequency'].values
@@ -144,13 +116,6 @@ def extract_spectral_features_raw(freq_df):
     
     return np.array(features)
 
-def extract_spectral_features(freq_df, feature_mean, feature_std):
-    """Extract and normalize features using pre-computed stats."""
-    features = extract_spectral_features_raw(freq_df)
-    # Normalize each feature independently
-    features = (features - feature_mean) / (feature_std + 1e-8)  # Add epsilon to avoid division by zero
-    return features
-
 def load_dataset_with_features(data_dir, split='train'):
     """
     Load dataset with extracted features (fixed length).
@@ -160,8 +125,6 @@ def load_dataset_with_features(data_dir, split='train'):
     
     classes = ['background', 'shout', 'drill']
     label_map = {'background': 0, 'shout': 1, 'drill': 2}
-
-    feature_mean, feature_std = get_feature_normalization_params(data_dir)
 
     for class_name in classes:
         class_dir = os.path.join(data_dir, split, class_name)
@@ -177,7 +140,7 @@ def load_dataset_with_features(data_dir, split='train'):
             df = pd.read_csv(file_path)
             
             # Extract fixed-length features
-            features = extract_spectral_features(df, feature_mean, feature_std)
+            features = extract_spectral_features(df)
             X_list.append(features)
             y_list.append(label_map[class_name])
     
