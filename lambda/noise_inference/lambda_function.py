@@ -4,12 +4,15 @@ import joblib
 import numpy as np
 import pandas as pd
 import json
-# import boto3
+import boto3
 
 # Logging for CLoudWatch
 import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+
+dynamodb = boto3.client("dynamodb")
+TABLE_NAME = "NoiseLog"
 
 # s3 = boto3.client("s3")
 
@@ -186,7 +189,18 @@ def lambda_handler(event, context):
 
         prediction = model.predict([features])
 
-        logger.info(f"Prediction successful: {prediction}")
+        logger.info(f"Prediction successful: {prediction[0]}")
+
+        dynamodb.put_item(
+            TableName=TABLE_NAME,
+            Item={
+                "houseName": {"S": house_id},
+                "timestamp": {"N": str(start_time)},
+                "noiseClass": {"N": str(prediction[0])}
+            }
+        )
+
+        logger.info("Successfully inserted item into DynamoDB")
 
         return {
             'statusCode': 200,
