@@ -15,17 +15,28 @@ Resources:
           AttributeType: N
         - AttributeName: noiseClass
           AttributeType: N
+        - AttributeName: dummy
+          AttributeType: S
 
       KeySchema:
         - AttributeName: houseName
-          KeyType: HASH       # Partition key
+          KeyType: HASH
         - AttributeName: timestamp
-          KeyType: RANGE      # Sort key
+          KeyType: RANGE
 
       GlobalSecondaryIndexes:
         - IndexName: NoiseClassIndex
           KeySchema:
             - AttributeName: noiseClass
+              KeyType: HASH
+            - AttributeName: timestamp
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+
+        - IndexName: TimestampIndex
+          KeySchema:
+            - AttributeName: dummy
               KeyType: HASH
             - AttributeName: timestamp
               KeyType: RANGE

@@ -50,6 +50,17 @@ def lambda_handler(event, context):
             }
             for item in items
         ]
+
+        # Group houses by houseName
+        house_dict = {}
+        for item in house_list:
+            house = item["house"]
+            timestamp = item["timestamp"]
+
+            if house not in house_dict:
+                house_dict[house] = []
+
+            house_dict[house].append(timestamp)
         
         return {
             "statusCode": 200,
@@ -57,7 +68,7 @@ def lambda_handler(event, context):
                 "noiseClass": noise_class,
                 "startTimestamp": start_ts,
                 "endTimestamp": end_ts,
-                "houses": house_list
+                "timestampByHouse": house_list
             })
         }
 

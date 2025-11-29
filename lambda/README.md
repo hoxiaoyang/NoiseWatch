@@ -32,5 +32,23 @@ If the search is successful, it returns:
 
 `{`
   `"statusCode": 200,`
-  `"body": "{"noiseClass": 2, "startTimestamp": 1763648995, "endTimestamp": 1764426595, "houses": [{"house": "house_123", "timestamp": 1764257968}]}"`
+  `"body": "{"noiseClass": 2, "startTimestamp": 1763648995, "endTimestamp": 1764426595, "timestampByHouse": {"house_123": [1764257968]}}"`
+`}`
+
+3. *get_house_without_label* endpoint:
+
+Receives data in format of HTTP get. Data format of example input:
+
+`{`
+  `"queryStringParameters": {`
+    `"startTimestamp": "1763648995",`
+    `"endTimestamp": "1764426595"`
+  `}`
+`}`
+
+If the search is successful, it returns:
+
+`{`
+  `"statusCode": 200,`
+  `"body": "{"noiseClass": 2, "startTimestamp": 1763648995, "endTimestamp": 1764426595, "houses\": {"house_123": [{"house": "house_123", "timestamp": 1763648995, "noiseClass": 2}]}}"`
 `}`

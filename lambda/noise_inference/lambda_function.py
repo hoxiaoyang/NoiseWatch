@@ -196,7 +196,8 @@ def lambda_handler(event, context):
             Item={
                 "houseName": {"S": house_id},
                 "timestamp": {"N": str(start_time)},
-                "noiseClass": {"N": str(prediction[0])}
+                "noiseClass": {"N": str(prediction[0])},
+                "dummy": {"S": "1"}
             }
         )
 
