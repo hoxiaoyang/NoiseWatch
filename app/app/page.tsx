@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { ComplaintForm } from "./components/ComplaintForm";
+import { ProgressIndicator } from "./components/ProgressIndicator";
 import { ComplaintFormData } from "./types";
 
 export default function Home() {
@@ -16,7 +17,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50 flex flex-col">
       {/* Header */}
       <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
@@ -70,7 +71,10 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 w-full">
+        {/* Progress */}
+        <ProgressIndicator currentStep={1} />
+
         {/* Hero Section */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -107,7 +111,7 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Data Privacy</h3>
+              <h3 className="text-base font-semibold text-gray-900 mb-2">Data Privacy</h3>
               <p className="text-sm text-gray-600">
                 Your personal information is encrypted and only shared with
                 authorized personnel for investigation purposes.
@@ -130,7 +134,7 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">
                 Verified Data
               </h3>
               <p className="text-sm text-gray-600">
@@ -155,7 +159,7 @@ export default function Home() {
                   />
                 </svg>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
+              <h3 className="text-base font-semibold text-gray-900 mb-2">
                 Fast Response
               </h3>
               <p className="text-sm text-gray-600">
@@ -168,7 +172,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-16">
+      <footer className="bg-gray-900 text-white mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center">
             <p className="text-gray-400 text-sm">

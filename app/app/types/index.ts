@@ -1,6 +1,7 @@
 // Types for NoiseWatch Application
 
 export interface ComplaintFormData {
+  address: string;
   unitNumber: string;
   startTime: string;
   endTime: string;
