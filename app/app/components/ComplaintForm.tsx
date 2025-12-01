@@ -117,133 +117,124 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
     // Also clear postalCode error when address changes
     if (field === 'address' && errors.postalCode) {
       setErrors((prev) => ({ ...prev, postalCode: undefined }));
-    }
+    }       
   };
-
+ 
   return (
+<>
     <Card>
-      <CardHeader>
-        <CardTitle>Report Noise Disturbance</CardTitle>
-      </CardHeader>
-
-      <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
-
-          {/* Auto-filled Address */}
-          <Input
-            label="Your Address"
-            placeholder="Type a 6-digit postal code to auto-fill"
-            value={formData.address}
-            onChange={(e) => handleChange('address', e.target.value)}
-            error={errors.address || errors.postalCode}
-            disabled={isLoading || isFetchingAddress}
-          />
-          {isFetchingAddress && (
-            <p className="text-sm text-blue-600 mt-1.5">Fetching address...</p>
-          )}
-
-          {/* Unit Number only */}
-          <Input
-            label="Your Unit Number"
-            placeholder="E.g., 05-123"
-            value={formData.unitNumber}
-            onChange={(e) => handleChange('unitNumber', e.target.value)}
-            error={errors.unitNumber}
-            disabled={isLoading}
-          />
-
-          {/* Time Inputs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <CardHeader>
+          <CardTitle>Report Noise Disturbance</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Auto-filled Address */}
             <Input
-              type="datetime-local"
-              label="Start Time of Noise Disturbance"
-              value={formData.startTime}
-              onChange={(e) => handleChange('startTime', e.target.value)}
-              error={errors.startTime}
+              label="Your Address"
+              placeholder="Type a 6-digit postal code to auto-fill"
+              value={formData.address}
+              onChange={(e) => handleChange('address', e.target.value)}
+              error={errors.address || errors.postalCode}
+              disabled={isLoading || isFetchingAddress}
             />
-            <Input
-              type="datetime-local"
-              label="End Time of Noise Disturbance"
-              value={formData.endTime}
-              onChange={(e) => handleChange('endTime', e.target.value)}
-              error={errors.endTime}
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Description of Noise
-            </label>
-
-            {/* Dropdown */}
-            <select
-              value={selectedOption} 
-              onChange={(e) => {
-                const value = e.target.value;
-                setSelectedOption(value);
-
-                // Clear description error when user selects an option
-                if (errors.description) {
-                  setErrors((prev) => ({ ...prev, description: undefined }));
-                }
-
-                if (value === "") {
-                  handleChange('description', ''); // clear description for placeholder
-                } else if (value === "Other") {
-                  handleChange('description', customNoise); // keep custom input
-                } else {
-                  handleChange('description', value); // save selected option
-                }
-              }}
-              disabled={isLoading}
-              className={`border rounded px-3 py-2 w-full mb-2 ${
-                errors.description && selectedOption !== 'Other' 
-                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
-                  : 'border-gray-300'
-              }`}
-            >
-              <option value="">Select</option>
-              {noiseOptions.map((option) => (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              ))}
-            </select>
-            {errors.description && selectedOption !== 'Other' && (
-              <p className="text-sm text-red-600 mt-1">{errors.description}</p>
+            {isFetchingAddress && (
+              <p className="text-sm text-blue-600 mt-1.5">Fetching address...</p>
             )}
-
-            {/* Custom input shows only if "Other" is selected */}
-            {selectedOption === "Other" && (
+            {/* Unit Number only */}
+            <Input
+              label="Your Unit Number"
+              placeholder="E.g., 05-123"
+              value={formData.unitNumber}
+              onChange={(e) => handleChange('unitNumber', e.target.value)}
+              error={errors.unitNumber}
+              disabled={isLoading}
+            />
+            {/* Time Inputs */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
-                placeholder="e.g., Loud music, banging sounds"
-                value={customNoise}
+                type="datetime-local"
+                label="Start Time of Noise Disturbance"
+                value={formData.startTime}
+                onChange={(e) => handleChange('startTime', e.target.value)}
+                error={errors.startTime}
+              />
+              <Input
+                type="datetime-local"
+                label="End Time of Noise Disturbance"
+                value={formData.endTime}
+                onChange={(e) => handleChange('endTime', e.target.value)}
+                error={errors.endTime}
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Description of Noise
+              </label>
+              {/* Dropdown */}
+              <select
+                value={selectedOption} 
                 onChange={(e) => {
                   const value = e.target.value;
-                  setCustomNoise(value);
-                  handleChange('description', value); // update formData
+                  setSelectedOption(value);
+                  // Clear description error when user selects an option
+                  if (errors.description) {
+                    setErrors((prev) => ({ ...prev, description: undefined }));
+                  }
+                  if (value === "") {
+                    handleChange('description', ''); // clear description for placeholder
+                  } else if (value === "Other") {
+                    handleChange('description', customNoise); // keep custom input
+                  } else {
+                    handleChange('description', value); // save selected option
+                  }
                 }}
                 disabled={isLoading}
-                error={errors.description}
-              />
-            )}
-
-            <p className="text-sm text-gray-500 mt-1.5">
-              Provide as much detail as possible to help us match your complaint
-            </p>
-          </div>
-
-          <Button
-            type="submit"
-            variant="primary"
-            size="lg"
-            fullWidth
-            disabled={isLoading}
-          >
-            {isLoading ? 'Searching for matches...' : 'Find Matches'}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+                className={`border rounded px-3 py-2 w-full mb-2 ${
+                  errors.description && selectedOption !== 'Other' 
+                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                    : 'border-gray-300'
+                }`}
+              >
+                <option value="">Select</option>
+                {noiseOptions.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+              {errors.description && selectedOption !== 'Other' && (
+                <p className="text-sm text-red-600 mt-1">{errors.description}</p>
+              )}
+              {/* Custom input shows only if "Other" is selected */}
+              {selectedOption === "Other" && (
+                <Input
+                  placeholder="e.g., Loud music, banging sounds"
+                  value={customNoise}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setCustomNoise(value);
+                    handleChange('description', value); // update formData
+                  }}
+                  disabled={isLoading}
+                  error={errors.description}
+                />
+              )}
+              <p className="text-sm text-gray-500 mt-1.5">
+                Provide as much detail as possible to help us match your complaint
+              </p>
+            </div>
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              fullWidth
+              disabled={isLoading}
+            >
+              {isLoading ? 'Searching for matches...' : 'Find Matches'}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </>
   );
 };
