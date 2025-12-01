@@ -93,8 +93,8 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
       <CardHeader>
         <CardTitle>Matching Noise Records Found</CardTitle>
         <p className="text-sm text-gray-600 mt-2">
-          We found {groupedMatches.length} {groupedMatches.length === 1 ? 'house' : 'houses'} with {matches.length} potential {matches.length === 1 ? 'match' : 'matches'} from our noise monitoring system.
-          Please review and select the incident that matches your complaint.
+          We found {groupedMatches.length} {groupedMatches.length === 1 ? 'house' : 'houses'} from our noise monitoring system.
+          Please review and select the record that matches your complaint.
         </p>
       </CardHeader>
       <CardContent>
@@ -135,10 +135,6 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <span>{formatTimestamp(match.timestamp)}</span>
-                        <span className="text-xs text-gray-400">•</span>
-                        <span className={`text-xs font-medium ${getConfidenceColor(match.confidenceScore)} px-2 py-0.5 rounded`}>
-                          {match.confidenceScore}%
-                        </span>
                       </div>
                       <p className="text-sm text-gray-700">
                         Noise Detected: {match.description}
@@ -173,7 +169,7 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
                       onSelectMatch(combinedMatch);
                     }}
                   >
-                    Select This Record ({group.records.length} {group.records.length === 1 ? 'record' : 'records'})
+                    Select Record
                   </Button>
                 </div>
               </div>
