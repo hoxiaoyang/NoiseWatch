@@ -123,6 +123,7 @@ def load_dataset_with_features(data_dir, split='train'):
     X_list = []
     y_list = []
     
+    # Get classes from data_dir subdirectories
     classes = ['background', 'shout', 'drill']
     label_map = {'background': 0, 'shout': 1, 'drill': 2}
 

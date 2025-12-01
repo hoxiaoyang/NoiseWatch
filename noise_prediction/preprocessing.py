@@ -112,31 +112,21 @@ def get_labelled_csv(csv_file_name, type='shout', labelling_interval=5):
     # Create labelled directory and subdirectories
     directory = os.path.dirname(os.path.dirname(csv_file_name))
     labelled_dir = os.path.join(directory, 'labelled')
-    shout_dir = os.path.join(labelled_dir, 'shout')
-    drill_dir = os.path.join(labelled_dir, 'drill')
+    # Get 'type' subdirectories
+    class_dir = os.path.join(labelled_dir, type)
     background_dir = os.path.join(labelled_dir, 'background')
     
-    os.makedirs(shout_dir, exist_ok=True)
-    os.makedirs(drill_dir, exist_ok=True)
+    os.makedirs(class_dir, exist_ok=True)
     os.makedirs(background_dir, exist_ok=True)
     
     # Create 5 separate CSV files
-    if type == 'drill':
-        intervals = [
-            (0, interval_length, f"{base_name}_1.csv", "drill", drill_dir),
-            (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
-            (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "drill", drill_dir),
-            (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
-            (4 * interval_length, df_length, f"{base_name}_5.csv", "drill", drill_dir),
-        ]
-    else:  # type == 'shout'
-        intervals = [
-            (0, interval_length, f"{base_name}_1.csv", "shout", shout_dir),
-            (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
-            (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", "shout", shout_dir),
-            (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
-            (4 * interval_length, df_length, f"{base_name}_5.csv", "shout", shout_dir),
-        ]
+    intervals = [
+        (0, interval_length, f"{base_name}_1.csv", type, class_dir),
+        (interval_length, 2 * interval_length, f"{base_name}_2.csv","background", background_dir),
+        (2 * interval_length, 3 * interval_length, f"{base_name}_3.csv", type, class_dir),
+        (3 * interval_length, 4 * interval_length, f"{base_name}_4.csv","background", background_dir),
+        (4 * interval_length, df_length, f"{base_name}_5.csv", type, class_dir),
+    ]
     
     for start_idx, end_idx, filename, label, output_dir in intervals:
         # Extract subset of dataframe
@@ -267,7 +257,8 @@ def process_all_files(input_base_dir, output_base_dir, frame_size=30, overlap_pe
         input_base_dir: Base directory containing background/ and shout/ and drill/ CSV folders
         output_base_dir: Where to save frequency domain files
     """
-    classes = ['background', 'shout', 'drill']
+    # Read classes from the subdirectories in input_base_dir
+    classes = [d for d in os.listdir(input_base_dir) if os.path.isdir(os.path.join(input_base_dir, d))]
     
     for class_name in classes:
         input_dir = os.path.join(input_base_dir, class_name)
