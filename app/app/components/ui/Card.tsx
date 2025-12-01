@@ -15,7 +15,7 @@ export const Card: React.FC<CardProps> = ({ children, className = '' }) => {
 
 export const CardHeader: React.FC<CardProps> = ({ children, className = '' }) => {
   return (
-    <div className={`px-6 py-4 border-b border-gray-200 ${className}`}>
+    <div className={`px-6 py-5 border-b border-gray-200 ${className}`}>
       {children}
     </div>
   );
@@ -29,9 +29,17 @@ export const CardTitle: React.FC<CardProps> = ({ children, className = '' }) => 
   );
 };
 
+export const CardDescription: React.FC<CardProps> = ({ children, className = '' }) => {
+  return (
+    <p className={`text-sm text-gray-600 mt-2 ${className}`}>
+      {children}
+    </p>
+  );
+};
+
 export const CardContent: React.FC<CardProps> = ({ children, className = '' }) => {
   return (
-    <div className={`px-6 py-4 ${className}`}>
+    <div className={`px-6 py-6 ${className}`}>
       {children}
     </div>
   );

@@ -70,6 +70,13 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
   const validateForm = (): boolean => {
     const newErrors: Partial<Record<string, string>> = {};
 
+    // Validate address
+    if (!formData.address.trim()) {
+      newErrors.address = 'Address is required';
+    } else if (formData.address.trim().length < 5) {
+      newErrors.address = 'Please enter a valid address or postal code';
+    }
+
     if (!formData.unitNumber.trim()) {
       newErrors.unitNumber = 'Unit number is required';
     }
@@ -81,10 +88,13 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
       newErrors.endTime = 'End time must be after start time';
     }
 
-    if (!formData.description.trim()) {
-      newErrors.description = 'Description is required';
-    } else if (formData.description.trim().length < 1) {
-      newErrors.description = 'Please provide a description of the noise disturbance';
+    // Validate description
+    if (!selectedOption || selectedOption === '') {
+      newErrors.description = 'Description of noise is required';
+    } else if (selectedOption === 'Other' && !customNoise.trim()) {
+      newErrors.description = 'Description of noise is required';
+    } else if (!formData.description.trim()) {
+      newErrors.description = 'Description of noise is required';
     }
 
     setErrors(newErrors);
@@ -100,8 +110,13 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    // Clear error for the field being changed
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
+    }
+    // Also clear postalCode error when address changes
+    if (field === 'address' && errors.postalCode) {
+      setErrors((prev) => ({ ...prev, postalCode: undefined }));
     }
   };
 
@@ -109,31 +124,28 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
     <Card>
       <CardHeader>
         <CardTitle>Report Noise Disturbance</CardTitle>
-        <p className="text-sm text-gray-600 mt-2">
-          Enter your postal code and we will automatically retrieve your full address.
-        </p>
       </CardHeader>
 
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
 
           {/* Auto-filled Address */}
           <Input
-          label="Address"
-          placeholder="Enter postal code or full address"
-          value={formData.address}
-          onChange={(e) => handleChange('address', e.target.value)}
-          helperText={
-          /^\d{6}$/.test(formData.address)
-          ? isFetchingAddress ? 'Fetching address...' : 'Postal code detected'
-          : 'Type a 6-digit postal code to auto-fill'
-          }
+            label="Your Address"
+            placeholder="Type a 6-digit postal code to auto-fill"
+            value={formData.address}
+            onChange={(e) => handleChange('address', e.target.value)}
+            error={errors.address || errors.postalCode}
+            disabled={isLoading || isFetchingAddress}
           />
+          {isFetchingAddress && (
+            <p className="text-sm text-blue-600 mt-1.5">Fetching address...</p>
+          )}
 
           {/* Unit Number only */}
           <Input
-            label="Unit Number"
-            placeholder="e.g., 05-123"
+            label="Your Unit Number"
+            placeholder="E.g., 05-123"
             value={formData.unitNumber}
             onChange={(e) => handleChange('unitNumber', e.target.value)}
             error={errors.unitNumber}
@@ -144,14 +156,14 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               type="datetime-local"
-              label="Start Time"
+              label="Start Time of Noise Disturbance"
               value={formData.startTime}
               onChange={(e) => handleChange('startTime', e.target.value)}
               error={errors.startTime}
             />
             <Input
               type="datetime-local"
-              label="End Time"
+              label="End Time of Noise Disturbance"
               value={formData.endTime}
               onChange={(e) => handleChange('endTime', e.target.value)}
               error={errors.endTime}
@@ -165,26 +177,41 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
 
             {/* Dropdown */}
             <select
-              value={selectedOption}
+              value={selectedOption} 
               onChange={(e) => {
                 const value = e.target.value;
                 setSelectedOption(value);
 
-                if (value === "Other") {
+                // Clear description error when user selects an option
+                if (errors.description) {
+                  setErrors((prev) => ({ ...prev, description: undefined }));
+                }
+
+                if (value === "") {
+                  handleChange('description', ''); // clear description for placeholder
+                } else if (value === "Other") {
                   handleChange('description', customNoise); // keep custom input
                 } else {
                   handleChange('description', value); // save selected option
                 }
               }}
               disabled={isLoading}
-              className="border rounded px-3 py-2 w-full mb-2"
+              className={`border rounded px-3 py-2 w-full mb-2 ${
+                errors.description && selectedOption !== 'Other' 
+                  ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
+                  : 'border-gray-300'
+              }`}
             >
+              <option value="">Select</option>
               {noiseOptions.map((option) => (
                 <option key={option} value={option}>
                   {option}
                 </option>
               ))}
             </select>
+            {errors.description && selectedOption !== 'Other' && (
+              <p className="text-sm text-red-600 mt-1">{errors.description}</p>
+            )}
 
             {/* Custom input shows only if "Other" is selected */}
             {selectedOption === "Other" && (
@@ -201,18 +228,8 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
               />
             )}
 
-            <p className="text-gray-500 text-sm mt-1">
+            <p className="text-sm text-gray-500 mt-1.5">
               Provide as much detail as possible to help us match your complaint
-            </p>
-          </div>
-
-
-          <div className="flex items-center gap-2 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-            <svg className="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-            <p className="text-sm text-blue-800">
-              Your report will be processed securely. We will match it with our noise monitoring data to identify the source.
             </p>
           </div>
 
@@ -223,7 +240,7 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
             fullWidth
             disabled={isLoading}
           >
-            {isLoading ? 'Searching for matches...' : 'Submit Complaint'}
+            {isLoading ? 'Searching for matches...' : 'Find Matches'}
           </Button>
         </form>
       </CardContent>
