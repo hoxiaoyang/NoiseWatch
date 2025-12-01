@@ -19,8 +19,7 @@ import { NoiseMatch } from '../../types';
  * {
  *   matches: Array<{
  *     id: string,
- *     offendingBlock: string,
- *     offendingUnit: string,
+ *     houseName: string,
  *     timestamp: string,
  *     confidenceScore: number,
  *     description: string
@@ -38,33 +37,39 @@ function unixToIsoTimestamp(unixTimestamp: number): string {
   return new Date(unixTimestamp * 1000).toISOString();
 }
 
-// Parse house ID to extract block and unit
-function parseHouseId(houseId: string): { block: string; unit: string } {
-  const blockMatch = houseId.match(/block[_-]?(\d+)/i);
-  const unitMatch = houseId.match(/unit[_-]?([\d-]+)/i);
+
+// Map description to noise class
+// 0 -> background, 1 -> shout, 2 -> drill
+function getNoiseClassFromDescription(description: string): number | null {
+  const desc = description.toLowerCase();
   
-  if (blockMatch && unitMatch) {
-    return {
-      block: blockMatch[1],
-      unit: unitMatch[1],
-    };
+  if (desc.includes('shout') || desc.includes('shouting') || desc.includes('yell') || desc.includes('yelling')) {
+    return 1; // shout
+  }
+  if (desc.includes('drill') || desc.includes('drilling') || desc.includes('renovation') || desc.includes('construction')) {
+    return 2; // drill
   }
   
-  const houseMatch = houseId.match(/house[_-]?(\d+)/i);
-  if (houseMatch) {
-    return {
-      block: houseMatch[1],
-      unit: 'Unknown',
-    };
-  }
-  
-  return {
-    block: houseId,
-    unit: 'Unknown',
-  };
+  // For "Other" or unknown, return null to use get_house_without_label
+  return null;
 }
 
-// Transform Lambda response to NoiseMatch format
+// Map noise class to description
+// 0 -> background, 1 -> shout, 2 -> drill
+function getDescriptionFromNoiseClass(noiseClass: number): string {
+  switch (noiseClass) {
+    case 0:
+      return 'Background noise';
+    case 1:
+      return 'Shouting';
+    case 2:
+      return 'Drilling';
+    default:
+      return 'Noise disturbance';
+  }
+}
+
+// Transform Lambda response from get_house_without_label to NoiseMatch format
 function transformLambdaResponseToMatches(
   responseData: any,
   body: any,
@@ -78,9 +83,7 @@ function transformLambdaResponseToMatches(
   const endTs = endTimestamp || Math.floor(new Date(body.endTime).getTime() / 1000);
   
   if (responseData.houses) {
-    for (const [houseId, noiseEvents] of Object.entries(responseData.houses)) {
-      const { block, unit } = parseHouseId(houseId as string);
-      
+    for (const [houseName, noiseEvents] of Object.entries(responseData.houses)) {
       const events = Array.isArray(noiseEvents) ? noiseEvents : [];
       
       for (const event of events) {
@@ -94,12 +97,53 @@ function transformLambdaResponseToMatches(
         const confidenceScore = Math.round((timeProximityScore * 0.6) + (noiseClassScore * 0.4));
 
         matches.push({
-          id: `${houseId}_${event.timestamp}`,
-          offendingBlock: block,
-          offendingUnit: unit,
+          id: `${houseName}_${event.timestamp}`,
+          houseName: houseName as string,
           timestamp: unixToIsoTimestamp(event.timestamp),
           confidenceScore: Math.min(100, Math.max(50, confidenceScore)),
-          description: `Noise class ${event.noiseClass} detected: ${body.description || 'Noise disturbance recorded by monitoring system'}`,
+          description: getDescriptionFromNoiseClass(event.noiseClass),
+        });
+      }
+    }
+  }
+
+  // Sort matches by confidence score (highest first)
+  matches.sort((a, b) => b.confidenceScore - a.confidenceScore);
+  
+  return matches;
+}
+
+// Transform Lambda response from get_house (with noise class) to NoiseMatch format
+// This endpoint returns timestampByHouse instead of houses with full event objects
+function transformGetHouseResponseToMatches(
+  responseData: any,
+  body: any,
+  noiseClass: number,
+  startTimestamp: number,
+  endTimestamp: number
+): NoiseMatch[] {
+  const matches: NoiseMatch[] = [];
+  
+  if (responseData.timestampByHouse) {
+    for (const [houseName, timestamps] of Object.entries(responseData.timestampByHouse)) {
+      const timestampArray = Array.isArray(timestamps) ? timestamps : [];
+      
+      for (const timestamp of timestampArray) {
+        // Calculate confidence score based on time proximity
+        const complaintMidpoint = (startTimestamp + endTimestamp) / 2;
+        const timeDifference = Math.abs(timestamp - complaintMidpoint);
+        const timeWindow = endTimestamp - startTimestamp;
+        const timeProximityScore = Math.max(0, 100 - (timeDifference / timeWindow) * 100);
+        
+        const noiseClassScore = noiseClass >= 2 ? 80 : 60;
+        const confidenceScore = Math.round((timeProximityScore * 0.6) + (noiseClassScore * 0.4));
+
+        matches.push({
+          id: `${houseName}_${timestamp}`,
+          houseName: houseName as string,
+          timestamp: unixToIsoTimestamp(timestamp),
+          confidenceScore: Math.min(100, Math.max(50, confidenceScore)),
+          description: getDescriptionFromNoiseClass(noiseClass),
         });
       }
     }
@@ -123,38 +167,53 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Convert ISO timestamps to Unix timestamps
+    const startTimestamp = isoToUnixTimestamp(body.startTime);
+    const endTimestamp = isoToUnixTimestamp(body.endTime);
+
+    // Validate timestamp range
+    if (startTimestamp >= endTimestamp) {
+      return NextResponse.json(
+        { error: 'endTime must be after startTime' },
+        { status: 400 }
+      );
+    }
+
     // Check if mock mode is enabled (for testing)
-    const useMockData = process.env.USE_MOCK_DATA === 'true' || !process.env.LAMBDA_GET_HOUSE_WITHOUT_LABEL_ENDPOINT;
+    const useMockData = process.env.USE_MOCK_DATA === 'true' || (!process.env.LAMBDA_GET_HOUSE_WITHOUT_LABEL_ENDPOINT && !process.env.LAMBDA_GET_HOUSE_ENDPOINT);
     
     if (useMockData) {
       console.log('Using mock data for testing');
+      // Determine noise class from description
+      const noiseClass = getNoiseClassFromDescription(body.description) || 2;
+      
       // Simulate Lambda response format with statusCode and body wrapper
       const mockLambdaResponse = {
         statusCode: 200,
         body: JSON.stringify({
-          noiseClass: 2,
-          startTimestamp: Math.floor(new Date(body.startTime).getTime() / 1000),
-          endTimestamp: Math.floor(new Date(body.endTime).getTime() / 1000),
+          noiseClass: noiseClass,
+          startTimestamp: startTimestamp,
+          endTimestamp: endTimestamp,
           houses: {
             "house_124": [
               {
                 house: "house_124",
-                timestamp: Math.floor(new Date(body.startTime).getTime() / 1000) + 3600, // 1 hour after start
-                noiseClass: 2
+                timestamp: startTimestamp + 3600, // 1 hour after start
+                noiseClass: noiseClass
               }
             ],
             "house_123": [
               {
                 house: "house_123",
-                timestamp: Math.floor(new Date(body.startTime).getTime() / 1000) + 7200, // 2 hours after start
-                noiseClass: 2
+                timestamp: startTimestamp + 7200, // 2 hours after start
+                noiseClass: noiseClass
               }
             ],
             "house_125": [
               {
                 house: "house_125",
-                timestamp: Math.floor(new Date(body.startTime).getTime() / 1000) + 5400, // 1.5 hours after start
-                noiseClass: 2
+                timestamp: startTimestamp + 5400, // 1.5 hours after start
+                noiseClass: noiseClass
               }
             ]
           }
@@ -170,20 +229,75 @@ export async function POST(request: NextRequest) {
       }
       
       // Transform to NoiseMatch format (same logic as below)
-      const matches = transformLambdaResponseToMatches(responseData, body);
+      const matches = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
       
       return NextResponse.json(
         { 
           matches,
           message: matches.length > 0 
-            ? `Found ${matches.length} matching noise record(s) (MOCK DATA)` 
+            ? `Found ${matches.length} matching noise record(s) (MOCK DATA - Noise Class ${noiseClass})` 
             : 'No matching noise records found in the specified time range'
         },
         { status: 200 }
       );
     }
 
-    // Get Lambda endpoint from environment variable
+    // Try to determine noise class from description
+    const noiseClass = getNoiseClassFromDescription(body.description);
+    const getHouseEndpoint = process.env.LAMBDA_GET_HOUSE_ENDPOINT;
+    const useGetHouseEndpoint = noiseClass !== null && getHouseEndpoint;
+    
+    let matches: NoiseMatch[] = [];
+    let endpointUsed = '';
+
+    // Try get_house endpoint first if we have a noise class and the endpoint is configured
+    if (useGetHouseEndpoint && getHouseEndpoint) {
+      try {
+        const url = new URL(getHouseEndpoint);
+        url.searchParams.append('noiseClass', noiseClass.toString());
+        url.searchParams.append('startTimestamp', startTimestamp.toString());
+        url.searchParams.append('endTimestamp', endTimestamp.toString());
+        
+        const lambdaResponse = await fetch(url.toString(), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (lambdaResponse.ok) {
+          const lambdaData = await lambdaResponse.json();
+          
+          // Handle Lambda response format
+          let responseData = lambdaData;
+          if (lambdaData.statusCode && lambdaData.body) {
+            responseData = typeof lambdaData.body === 'string' 
+              ? JSON.parse(lambdaData.body) 
+              : lambdaData.body;
+          }
+
+          // Transform get_house response (has timestampByHouse format)
+          matches = transformGetHouseResponseToMatches(responseData, body, noiseClass, startTimestamp, endTimestamp);
+          endpointUsed = `get_house (noiseClass=${noiseClass})`;
+          
+          if (matches.length > 0) {
+            return NextResponse.json(
+              { 
+                matches,
+                message: `Found ${matches.length} matching noise record(s) using noise class filter (${noiseClass})`
+              },
+              { status: 200 }
+            );
+          }
+        } else {
+          console.warn(`get_house endpoint returned ${lambdaResponse.status}, falling back to get_house_without_label`);
+        }
+      } catch (error) {
+        console.warn('Error calling get_house endpoint, falling back to get_house_without_label:', error);
+      }
+    }
+
+    // Fallback to get_house_without_label endpoint
     const lambdaEndpoint = process.env.LAMBDA_GET_HOUSE_WITHOUT_LABEL_ENDPOINT;
     
     if (!lambdaEndpoint) {
@@ -191,18 +305,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: 'Lambda endpoint not configured' },
         { status: 500 }
-      );
-    }
-
-    // Convert ISO timestamps to Unix timestamps
-    const startTimestamp = isoToUnixTimestamp(body.startTime);
-    const endTimestamp = isoToUnixTimestamp(body.endTime);
-
-    // Validate timestamp range
-    if (startTimestamp >= endTimestamp) {
-      return NextResponse.json(
-        { error: 'endTime must be after startTime' },
-        { status: 400 }
       );
     }
 
@@ -259,13 +361,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Transform Lambda response to NoiseMatch format
-    const matches = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
+    matches = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
+    endpointUsed = endpointUsed || 'get_house_without_label';
 
     return NextResponse.json(
       { 
         matches,
         message: matches.length > 0 
-          ? `Found ${matches.length} matching noise record(s)` 
+          ? `Found ${matches.length} matching noise record(s)${endpointUsed ? ` (via ${endpointUsed})` : ''}` 
           : 'No matching noise records found in the specified time range'
       },
       { status: 200 }

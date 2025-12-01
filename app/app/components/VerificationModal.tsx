@@ -108,7 +108,7 @@ export const VerificationModal: React.FC<VerificationModalProps> = ({
           <div className="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
             <h4 className="font-medium text-gray-900 mb-2">Selected Noise Record:</h4>
             <p className="text-sm text-gray-700">
-              <span className="font-medium">Location:</span> Block {selectedMatch.offendingBlock}, Unit {selectedMatch.offendingUnit}
+              <span className="font-medium">Location:</span> {selectedMatch.houseName}
             </p>
             <p className="text-sm text-gray-700">
               <span className="font-medium">Time:</span> {new Date(selectedMatch.timestamp).toLocaleString('en-SG')}
