@@ -109,13 +109,13 @@ export default function SuccessPage() {
                   <h3 className="text-base font-semibold text-gray-900 mb-4">Complaint Reference</h3>
                   <div className="space-y-3">                    
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Description of Noise:</span>
+                      <span className="text-sm text-gray-600">Noise Detected:</span>
                       <span className="text-sm font-medium text-gray-900">
                         {submissionData.match.description}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-600">Offending Unit:</span>
+                      <span className="text-sm text-gray-600">Location:</span>
                       <span className="text-sm font-medium text-gray-900">
                         {submissionData.match.houseName}
                       </span>
@@ -142,10 +142,11 @@ export default function SuccessPage() {
                     )}
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Confidence Score:</span>
-                      <span className="text-sm font-medium text-green-700">
+                      <span className="text-sm font-medium text-gray-900">
                         {submissionData.match.confidenceScore}%
                       </span>
                     </div>
+                    <div className="border-t border-gray-200 my-3"></div>
                     <div className="flex justify-between items-center">
                       <span className="text-sm text-gray-600">Reference ID:</span>
                       <span className="text-sm font-mono font-medium text-gray-900">

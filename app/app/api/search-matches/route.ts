@@ -29,12 +29,12 @@ import { NoiseMatch } from '../../types';
 
 // Convert ISO 8601 timestamp to Unix timestamp (seconds)
 function isoToUnixTimestamp(isoString: string): number {
-  return Math.floor(new Date(isoString).getTime() / 1000);
+  return Math.floor(new Date(isoString).getTime());
 }
 
 // Convert Unix timestamp (seconds) to ISO 8601 string
 function unixToIsoTimestamp(unixTimestamp: number): string {
-  return new Date(unixTimestamp * 1000).toISOString();
+  return new Date(unixTimestamp).toISOString();
 }
 
 
@@ -87,28 +87,19 @@ function transformLambdaResponseToMatches(
       const events = Array.isArray(noiseEvents) ? noiseEvents : [];
       
       for (const event of events) {
-        // Calculate confidence score based on time proximity
-        const complaintMidpoint = (startTs + endTs) / 2;
-        const timeDifference = Math.abs(event.timestamp - complaintMidpoint);
-        const timeWindow = endTs - startTs;
-        const timeProximityScore = Math.max(0, 100 - (timeDifference / timeWindow) * 100);
-        
-        const noiseClassScore = event.noiseClass >= 2 ? 80 : 60;
-        const confidenceScore = Math.round((timeProximityScore * 0.6) + (noiseClassScore * 0.4));
-
         matches.push({
           id: `${houseName}_${event.timestamp}`,
           houseName: houseName as string,
           timestamp: unixToIsoTimestamp(event.timestamp),
-          confidenceScore: Math.min(100, Math.max(50, confidenceScore)),
+          confidenceScore: 0, // Will be calculated in MatchingResults component
           description: getDescriptionFromNoiseClass(event.noiseClass),
         });
       }
     }
   }
 
-  // Sort matches by confidence score (highest first)
-  matches.sort((a, b) => b.confidenceScore - a.confidenceScore);
+  // Note: Confidence scores will be calculated in MatchingResults component
+  // No sorting needed here since grouping will be done client-side
   
   return matches;
 }
@@ -129,28 +120,19 @@ function transformGetHouseResponseToMatches(
       const timestampArray = Array.isArray(timestamps) ? timestamps : [];
       
       for (const timestamp of timestampArray) {
-        // Calculate confidence score based on time proximity
-        const complaintMidpoint = (startTimestamp + endTimestamp) / 2;
-        const timeDifference = Math.abs(timestamp - complaintMidpoint);
-        const timeWindow = endTimestamp - startTimestamp;
-        const timeProximityScore = Math.max(0, 100 - (timeDifference / timeWindow) * 100);
-        
-        const noiseClassScore = noiseClass >= 2 ? 80 : 60;
-        const confidenceScore = Math.round((timeProximityScore * 0.6) + (noiseClassScore * 0.4));
-
         matches.push({
           id: `${houseName}_${timestamp}`,
           houseName: houseName as string,
           timestamp: unixToIsoTimestamp(timestamp),
-          confidenceScore: Math.min(100, Math.max(50, confidenceScore)),
+          confidenceScore: 0, // Will be calculated in MatchingResults component
           description: getDescriptionFromNoiseClass(noiseClass),
         });
       }
     }
   }
 
-  // Sort matches by confidence score (highest first)
-  matches.sort((a, b) => b.confidenceScore - a.confidenceScore);
+  // Note: Confidence scores will be calculated in MatchingResults component
+  // No sorting needed here since grouping will be done client-side
   
   return matches;
 }
