@@ -70,7 +70,7 @@ export default function Home() {
               </div>
               <Button
                 type="button"
-                variant="secondary"
+                variant="primary"
                 size="sm"
                 onClick={() => router.push("/admin")}
               >
