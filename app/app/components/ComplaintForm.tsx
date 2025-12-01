@@ -117,21 +117,17 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
     // Also clear postalCode error when address changes
     if (field === 'address' && errors.postalCode) {
       setErrors((prev) => ({ ...prev, postalCode: undefined }));
-    }
+    }       
   };
-
-    return (
+ 
+  return (
+<>
     <Card>
-       <CardHeader>
-         <CardTitle>Report Noise Disturbance</CardTitle>
-       </CardHeader>
         <CardHeader>
           <CardTitle>Report Noise Disturbance</CardTitle>
         </CardHeader>
-
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-
             {/* Auto-filled Address */}
             <Input
               label="Your Address"
@@ -144,7 +140,6 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
             {isFetchingAddress && (
               <p className="text-sm text-blue-600 mt-1.5">Fetching address...</p>
             )}
-
             {/* Unit Number only */}
             <Input
               label="Your Unit Number"
@@ -154,7 +149,6 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
               error={errors.unitNumber}
               disabled={isLoading}
             />
-
             {/* Time Inputs */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <Input
@@ -172,24 +166,20 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
                 error={errors.endTime}
               />
             </div>
-
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
                 Description of Noise
               </label>
-
               {/* Dropdown */}
               <select
                 value={selectedOption} 
                 onChange={(e) => {
                   const value = e.target.value;
                   setSelectedOption(value);
-
                   // Clear description error when user selects an option
                   if (errors.description) {
                     setErrors((prev) => ({ ...prev, description: undefined }));
                   }
-
                   if (value === "") {
                     handleChange('description', ''); // clear description for placeholder
                   } else if (value === "Other") {
@@ -215,7 +205,6 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
               {errors.description && selectedOption !== 'Other' && (
                 <p className="text-sm text-red-600 mt-1">{errors.description}</p>
               )}
-
               {/* Custom input shows only if "Other" is selected */}
               {selectedOption === "Other" && (
                 <Input
@@ -230,12 +219,10 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
                   error={errors.description}
                 />
               )}
-
               <p className="text-sm text-gray-500 mt-1.5">
                 Provide as much detail as possible to help us match your complaint
               </p>
             </div>
-
             <Button
               type="submit"
               variant="primary"
