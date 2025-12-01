@@ -1,13 +1,14 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { Input } from "./ui/Input";
 
 type Sensor = string | { id: string; name?: string };
+type PingStatus = "idle" | "pinging" | "online" | "offline" | "error";
 
-export function Admin() {
+export const Admin: React.FC = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [authenticated, setAuthenticated] = useState(false);
@@ -23,6 +24,10 @@ export function Admin() {
   const [stopTs, setStopTs] = useState("");
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ type: "error" | "success"; text: string } | null>(null);
+
+  // Maintenance state
+  const [view, setView] = useState<"training" | "maintenance">("training");
+  const [pingStatuses, setPingStatuses] = useState<Record<string, PingStatus>>({});
 
   const handleChange = (field: string, value: string) => {
     setForm((p) => ({ ...p, [field]: value }));
@@ -55,6 +60,13 @@ export function Admin() {
           const first = data[0];
           setSensorId(typeof first === "string" ? first : first.id);
         }
+        // initialize ping statuses
+        const initial: Record<string, PingStatus> = {};
+        (data || []).forEach((s: any) => {
+          const id = typeof s === "string" ? s : s.id;
+          initial[id] = "idle";
+        });
+        setPingStatuses(initial);
       } catch (err) {
         console.error(err);
         setMsg({ type: "error", text: "Could not load sensors." });
@@ -111,6 +123,37 @@ export function Admin() {
     setMsg({ type: "success", text: "Ready to re-record — fields cleared." });
   };
 
+  // Maintenance: ping single sensor
+  async function pingSensor(id: string) {
+    setPingStatuses((s) => ({ ...s, [id]: "pinging" }));
+    try {
+      const res = await fetch("/api/admin/sensors/ping", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sensorId: id }),
+      });
+      if (!res.ok) {
+        const txt = await res.text();
+        console.error("Ping failed", id, res.status, txt);
+        setPingStatuses((s) => ({ ...s, [id]: "offline" }));
+        return;
+      }
+      const body = await res.json();
+      setPingStatuses((s) => ({ ...s, [id]: body?.ok ? "online" : "offline" }));
+    } catch (err) {
+      console.error("Ping error", id, err);
+      setPingStatuses((s) => ({ ...s, [id]: "error" }));
+    }
+  }
+
+  async function pingAll() {
+    for (const s of sensors) {
+      const id = typeof s === "string" ? s : s.id;
+      // eslint-disable-next-line no-await-in-loop
+      await pingSensor(id);
+    }
+  }
+
   if (!authenticated) {
     return (
       <div className="flex justify-center items-center min-h-screen p-4">
@@ -152,131 +195,221 @@ export function Admin() {
     );
   }
 
-  // Authenticated: show training UI
   return (
-    <div className="flex justify-center items-start min-h-screen p-6">
-      <Card className="w-full max-w-2xl">
-        <CardHeader>
-          <CardTitle>Training — add labeled segment</CardTitle>
-          <p className="text-sm text-gray-600 mt-1">
-            Choose a sensor, label the interval and start the training pipeline.
-          </p>
-        </CardHeader>
+    <div className="flex flex-col items-center min-h-screen p-6">
+      <div className="w-full max-w-2xl mb-4 flex gap-2">
+        <Button
+          type="button"
+          variant={view === "training" ? "primary" : "secondary"}
+          onClick={() => setView("training")}
+        >
+          Training
+        </Button>
+        <Button
+          type="button"
+          variant={view === "maintenance" ? "primary" : "secondary"}
+          onClick={() => setView("maintenance")}
+        >
+          Maintenance
+        </Button>
+      </div>
 
-        <CardContent>
-          <form onSubmit={startTraining} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Training sensor</label>
-              {loadingSensors ? (
-                <p>Loading sensors…</p>
-              ) : (
+      {view === "training" && (
+        <Card className="w-full max-w-2xl">
+          <CardHeader>
+            <CardTitle>Training — add labeled segment</CardTitle>
+            <p className="text-sm text-gray-600 mt-1">
+              Choose a sensor, label the interval and start the training pipeline.
+            </p>
+          </CardHeader>
+
+          <CardContent>
+            <form onSubmit={startTraining} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Training sensor</label>
+                {loadingSensors ? (
+                  <p>Loading sensors…</p>
+                ) : (
+                  <select
+                    className="w-full border rounded p-2"
+                    value={sensorId}
+                    onChange={(e) => {
+                      setSensorId(e.target.value);
+                      if (msg) setMsg(null);
+                    }}
+                  >
+                    {sensors.map((s: any) => {
+                      const id = typeof s === "string" ? s : s.id;
+                      const displayLabel = typeof s === "string" ? s : s.name ?? s.id;
+                      return (
+                        <option key={id} value={id}>
+                          {displayLabel}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Label</label>
                 <select
                   className="w-full border rounded p-2"
-                  value={sensorId}
+                  value={labelOption}
                   onChange={(e) => {
-                    setSensorId(e.target.value);
+                    const v = e.target.value;
+                    setLabelOption(v);
+                    if (v === "other") {
+                      setLabel("");
+                      setCustomLabel("");
+                    } else {
+                      setLabel(v);
+                      setCustomLabel("");
+                    }
                     if (msg) setMsg(null);
                   }}
                 >
-                  {sensors.map((s: any) => {
-                    const id = typeof s === "string" ? s : s.id;
-                    const displayLabel = typeof s === "string" ? s : s.name ?? s.id;
-                    return (
-                      <option key={id} value={id}>
-                        {displayLabel}
-                      </option>
-                    );
-                  })}
+                  <option value="shouting">shouting</option>
+                  <option value="drilling">drilling</option>
+                  <option value="other">Other…</option>
                 </select>
-              )}
-            </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Label</label>
-              <select
-                className="w-full border rounded p-2"
-                value={labelOption}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  setLabelOption(v);
-                  if (v === "other") {
-                    setLabel("");
-                    setCustomLabel("");
-                  } else {
-                    setLabel(v);
-                    setCustomLabel("");
-                  }
-                  if (msg) setMsg(null);
+                {labelOption === "other" && (
+                  <input
+                    type="text"
+                    className="mt-2 w-full border rounded p-2"
+                    placeholder="Enter custom label"
+                    value={customLabel}
+                    onChange={(e) => {
+                      setCustomLabel(e.target.value);
+                      setLabel(e.target.value);
+                      if (msg) setMsg(null);
+                    }}
+                  />
+                )}
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Start timestamp</label>
+                  <input
+                    type="datetime-local"
+                    className="w-full border rounded p-2"
+                    value={startTs}
+                    onChange={(e) => {
+                      setStartTs(e.target.value);
+                      if (msg) setMsg(null);
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Stop timestamp</label>
+                  <input
+                    type="datetime-local"
+                    className="w-full border rounded p-2"
+                    value={stopTs}
+                    onChange={(e) => {
+                      setStopTs(e.target.value);
+                      if (msg) setMsg(null);
+                    }}
+                  />
+                </div>
+              </div>
+
+              {timeError && <p className="text-red-600 text-sm">End timestamp must be after start timestamp.</p>}
+
+              {msg && (
+                <p className={msg.type === "error" ? "text-red-600 text-sm" : "text-green-600 text-sm"}>
+                  {msg.text}
+                </p>
+              )}
+
+              <div className="flex gap-2">
+                <Button type="submit" variant="primary" size="lg" disabled={!canStart}>
+                  {busy ? "Starting…" : "Start training"}
+                </Button>
+
+                <Button type="button" variant="secondary" size="lg" onClick={reRecord}>
+                  Re-record
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      )}
+
+      {view === "maintenance" && (
+        <Card className="w-full max-w-2xl">
+          <CardHeader>
+            <CardTitle>Maintenance — ping sensors</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <div className="flex justify-end mb-4 gap-2">
+              <Button type="button" variant="primary" onClick={pingAll} disabled={loadingSensors}>
+                Ping All
+              </Button>
+              <Button
+                type="button"
+                variant="secondary"
+                onClick={() => {
+                  const reset: Record<string, PingStatus> = {};
+                  sensors.forEach((s: any) => {
+                    const id = typeof s === "string" ? s : s.id;
+                    reset[id] = "idle";
+                  });
+                  setPingStatuses(reset);
                 }}
               >
-                <option value="shouting">shouting</option>
-                <option value="drilling">drilling</option>
-                <option value="other">Other…</option>
-              </select>
-
-              {labelOption === "other" && (
-                <input
-                  type="text"
-                  className="mt-2 w-full border rounded p-2"
-                  placeholder="Enter custom label"
-                  value={customLabel}
-                  onChange={(e) => {
-                    setCustomLabel(e.target.value);
-                    setLabel(e.target.value);
-                    if (msg) setMsg(null);
-                  }}
-                />
-              )}
+                Reset
+              </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Start timestamp</label>
-                <input
-                  type="datetime-local"
-                  className="w-full border rounded p-2"
-                  value={startTs}
-                  onChange={(e) => {
-                    setStartTs(e.target.value);
-                    if (msg) setMsg(null);
-                  }}
-                />
-              </div>
+            {loadingSensors ? (
+              <p>Loading sensors…</p>
+            ) : sensors.length === 0 ? (
+              <p className="text-sm text-gray-600">No sensors found.</p>
+            ) : (
+              <ul className="space-y-2">
+                {sensors.map((s: any) => {
+                  const id = typeof s === "string" ? s : s.id;
+                  const displayLabel = typeof s === "string" ? s : s.name ?? s.id;
+                  const status = pingStatuses[id] ?? "idle";
+                  return (
+                    <li key={id} className="flex items-center justify-between border rounded p-3">
+                      <div>
+                        <div className="font-medium">{displayLabel}</div>
+                        <div className="text-xs text-gray-500">id: {id}</div>
+                      </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Stop timestamp</label>
-                <input
-                  type="datetime-local"
-                  className="w-full border rounded p-2"
-                  value={stopTs}
-                  onChange={(e) => {
-                    setStopTs(e.target.value);
-                    if (msg) setMsg(null);
-                  }}
-                />
-              </div>
-            </div>
+                      <div className="flex items-center gap-2">
+                        <div className="text-sm">
+                          {status === "idle" && <span className="text-gray-600">idle</span>}
+                          {status === "pinging" && <span className="text-yellow-600">pinging…</span>}
+                          {status === "online" && <span className="text-green-600">online</span>}
+                          {status === "offline" && <span className="text-red-600">offline</span>}
+                          {status === "error" && <span className="text-red-700">error</span>}
+                        </div>
 
-            {timeError && <p className="text-red-600 text-sm">End timestamp must be after start timestamp.</p>}
-
-            {msg && (
-              <p className={msg.type === "error" ? "text-red-600 text-sm" : "text-green-600 text-sm"}>
-                {msg.text}
-              </p>
+                        <Button
+                          type="button"
+                          variant="primary"
+                          size="sm"
+                          onClick={() => pingSensor(id)}
+                          disabled={status === "pinging"}
+                        >
+                          Ping
+                        </Button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             )}
-
-            <div className="flex gap-2">
-              <Button type="submit" variant="primary" size="lg" disabled={!canStart}>
-                {busy ? "Starting…" : "Start training"}
-              </Button>
-
-              <Button type="button" variant="secondary" size="lg" onClick={reRecord}>
-                Re-record
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      )}
     </div>
   );
-}
+};
