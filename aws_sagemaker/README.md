@@ -41,3 +41,32 @@ image_uri = image_uris.retrieve(
 )
 print(image_uri)
 ```
+
+You should package the python files to store in your EC2 bucket using the following commands:
+
+`tar -czf sourcedir.tar.gz train.py preprocessing.py feature_extract.py model.joblib requirements.txt`
+
+`aws s3 cp sourcedir.tar.gz s3://my-sagemaker-inputs-noise/aws_sagemaker/source/`
+
+
+Take note that Sagemaker will store your files in this way if you follow above steps:
+
+```
+/opt/ml/
+├── code/                           # Your source code (cwd)
+│   ├── train.py
+│   ├── preprocessing.py
+│   ├── feature_extract.py
+│   └── model.joblib              # If you packaged it in tarball
+├── input/
+│   └── data/
+│       ├── background/
+│       │   └── background.csv
+│       ├── shout/
+│       │   └── shout.csv
+│       └── drill/
+│           └── drill.csv
+├── model/                         # Where you save final model
+│   └── model.joblib              # Saved after training
+└── output/                        # For failure logs
+```

@@ -37,16 +37,24 @@ def process_unstructured_data_to_csv(file_name, time_interval):
                 if match:
                     analog_value = float(match.group())
 
+                ######## UNCOMMENT IF YOU ARE USING DATA FROM KY-038 SOUND SENSOR ########
                 # These values might be wrong, due to the transmission delay and overlapping of data packets when we log values from the microcontroller. We are not able to parse a clean data set from the raw data log.
                 # Hence, we need to check that data is NEVER above 4096 (12-bit ADC max value). If it is, we set it to the previous value.
                 # We assume that the value will never drop to below 1000 (tested values range from 2000+ to 3000+) If it is, we set it to the previous value as well.
-                if analog_value > 4096:
-                    if len(analog_values) > 0:
-                        analog_value = analog_values[-1]
-                    else:
-                        analog_value = 0.0  # If it's the first value, set to 0
+                # if analog_value > 4096:
+                #     if len(analog_values) > 0:
+                #         analog_value = analog_values[-1]
+                #     else:
+                #         analog_value = 0.0  # If it's the first value, set to 0
 
-                if analog_value <= 1000:
+                # if analog_value <= 1000:
+                #     if len(analog_values) > 0:
+                #         analog_value = analog_values[-1]
+                #     else:
+                #         analog_value = 0.0  # If it's the first value, set to 0
+
+                ######## For the new Mems INMP441 sound sensor, the analog value will be at maximum 420426
+                if analog_value > 420426:
                     if len(analog_values) > 0:
                         analog_value = analog_values[-1]
                     else:
