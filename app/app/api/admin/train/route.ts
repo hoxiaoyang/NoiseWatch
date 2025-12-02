@@ -1,17 +1,24 @@
 import { NextResponse } from "next/server";
 
-const LAMBDA_URL =
-  process.env.TRAINING_LAMBDA_URL ??
-  "https://2j2sn03s42.execute-api.ap-southeast-1.amazonaws.com/default/fine_tune_noise_classification";
-
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
+    const lambdaUrl = process.env.TRAINING_LAMBDA_URL;
 
-    const response = await fetch(LAMBDA_URL, {
+    if (!lambdaUrl) {
+      console.error("TRAINING_LAMBDA_URL not configured");
+      return NextResponse.json(
+        { error: "Lambda endpoint not configured" },
+        { status: 500 }
+      );
+    }
+
+    // Read raw CSV text from request body
+    const csvText = await req.text();
+
+    const response = await fetch(lambdaUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
+      headers: { "Content-Type": "text/csv" },
+      body: csvText,
     });
 
     if (!response.ok) {
