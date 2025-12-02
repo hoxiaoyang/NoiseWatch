@@ -26,10 +26,11 @@ export const Admin: React.FC = () => {
   const [csvContent, setCsvContent] = useState('');
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const [startTs, setStartTs] = useState('');
-  const [stopTs, setStopTs] = useState('');
   const [busy, setBusy] = useState(false);
-  const [msg, setMsg] = useState<{ type: 'error' | 'success'; text: string } | null>(null);
+
+  // Separate messages for fine-tuning and re-training
+  const [msgFine, setMsgFine] = useState<{ type: 'error' | 'success'; text: string } | null>(null);
+  const [msgRe, setMsgRe] = useState<{ type: 'error' | 'success'; text: string } | null>(null);
 
   // Maintenance state
   const [pingStatuses, setPingStatuses] = useState<Record<string, PingStatus>>({});
@@ -72,25 +73,21 @@ export const Admin: React.FC = () => {
         setPingStatuses(initial);
       } catch (err) {
         console.error(err);
-        setMsg({ type: 'error', text: 'Could not load sensors.' });
       } finally {
         setLoadingSensors(false);
       }
     })();
   }, [authenticated]);
 
-  const timeValid = startTs && stopTs ? new Date(stopTs).getTime() > new Date(startTs).getTime() : false;
-  const timeError = startTs && stopTs && !timeValid;
-
   const canStart = !!sensorId && !!label && !!csvContent && !busy;
 
   const startFineTuning = async () => {
     if (!canStart) {
-      setMsg({ type: 'error', text: timeError ? 'End timestamp must be after start timestamp.' : 'Select sensor, label and upload CSV.' });
+      setMsgFine({ type: 'error', text: 'Select sensor, label and upload CSV.' });
       return;
     }
     setBusy(true);
-    setMsg(null);
+    setMsgFine(null);
     try {
       const res = await fetch('/api/admin/train', {
         method: 'POST',
@@ -98,9 +95,9 @@ export const Admin: React.FC = () => {
         body: csvContent,
       });
       if (!res.ok) throw new Error('Fine-tuning request failed');
-      setMsg({ type: 'success', text: 'CSV successfully sent for fine-tuning.' });
+      setMsgFine({ type: 'success', text: 'CSV successfully sent for fine-tuning.' });
     } catch (err: any) {
-      setMsg({ type: 'error', text: err?.message || 'Unknown error' });
+      setMsgFine({ type: 'error', text: err?.message || 'Unknown error' });
     } finally {
       setBusy(false);
     }
@@ -108,13 +105,13 @@ export const Admin: React.FC = () => {
 
   const startReTraining = async () => {
     if (!canStart) {
-      setMsg({ type: 'error', text: 'Select sensor, label and upload CSV.' });
+      setMsgRe({ type: 'error', text: 'Select sensor, label and upload CSV.' });
       return;
     }
     setBusy(true);
-    setMsg(null);
+    setMsgRe(null);
     setTimeout(() => {
-      setMsg({ type: 'success', text: 'Data successfully sent for re-training.' });
+      setMsgRe({ type: 'success', text: 'Data successfully sent for re-training.' });
       setBusy(false);
     }, 500);
   };
@@ -132,7 +129,9 @@ export const Admin: React.FC = () => {
   const reUpload = () => {
     setCsvContent('');
     if (fileInputRef.current) fileInputRef.current.value = '';
-    setMsg(null);
+    // Clear messages for both views
+    setMsgFine(null);
+    setMsgRe(null);
   };
 
   const triggerFileInput = () => {
@@ -153,7 +152,7 @@ export const Admin: React.FC = () => {
       }
       const body = await res.json().catch(() => ({ ok: false }));
       setPingStatuses((s) => ({ ...s, [id]: body?.ok ? 'online' : 'offline' }));
-    } catch (err) {
+    } catch {
       setPingStatuses((s) => ({ ...s, [id]: 'error' }));
     }
   }
@@ -173,7 +172,6 @@ export const Admin: React.FC = () => {
           <Card>
             <CardHeader>
               <CardTitle>Administrator Login</CardTitle>
-              <p className="text-sm text-gray-600 mt-2">Access restricted to authorised personnel.</p>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleLogin} className="space-y-6">
@@ -273,9 +271,15 @@ export const Admin: React.FC = () => {
                 <Button type="button" variant="secondary" size="lg" onClick={reUpload} className="ml-2">Re-upload</Button>
               </div>
 
-              {msg && (
-                <div className={`p-4 rounded-lg border ${msg.type === 'error' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-green-50 border-green-200 text-green-800'}`}>
-                  <p className="text-sm font-medium">{msg.text}</p>
+              {(view === 'fine-tuning' && msgFine) && (
+                <div className={`p-4 rounded-lg border ${msgFine.type === 'error' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-green-50 border-green-200 text-green-800'}`}>
+                  <p className="text-sm font-medium">{msgFine.text}</p>
+                </div>
+              )}
+
+              {(view === 're-training' && msgRe) && (
+                <div className={`p-4 rounded-lg border ${msgRe.type === 'error' ? 'bg-red-50 border-red-200 text-red-800' : 'bg-green-50 border-green-200 text-green-800'}`}>
+                  <p className="text-sm font-medium">{msgRe.text}</p>
                 </div>
               )}
 
