@@ -59,6 +59,7 @@ def process_unstructured_data_to_csv(dictionary):
 
     # Extract all analog values. For timestamp, increment by the time interval for each line.
     data = dictionary["data"]
+        
     df = pd.DataFrame(data)
 
     return df

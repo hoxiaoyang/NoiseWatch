@@ -19,7 +19,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 
 # Get current working directory
-cwd = os.getcwd()
+cwd = os.getcwd() # This would be /opt/ml/code if you run this in Sagemaker notebook.
 
 # Support multiple CSV files - look for all CSV files or use specific names
 

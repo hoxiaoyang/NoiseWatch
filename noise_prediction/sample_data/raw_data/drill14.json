@@ -1,0 +1,5392 @@
+{
+    "aggregation_duration_seconds": 25.0,
+    "total_entries": 1077,
+    "generated_at": "2025-12-01 23:35:53.981",
+    "sensor_data": [
+        {
+            "timestamp": 1764603328945,
+            "analog_value": 24926.4,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603328968,
+            "analog_value": 21762.89,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603328991,
+            "analog_value": 25142.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329014,
+            "analog_value": 24730.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329038,
+            "analog_value": 20919.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329061,
+            "analog_value": 21404.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329084,
+            "analog_value": 21474.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329107,
+            "analog_value": 20255.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329130,
+            "analog_value": 23426.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329154,
+            "analog_value": 24118.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329177,
+            "analog_value": 24116.18,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329200,
+            "analog_value": 22773.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329223,
+            "analog_value": 22327.38,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329246,
+            "analog_value": 22495.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329270,
+            "analog_value": 24238.42,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329293,
+            "analog_value": 24641.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329316,
+            "analog_value": 25261.04,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329339,
+            "analog_value": 23078.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329362,
+            "analog_value": 25717.32,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329386,
+            "analog_value": 25344.77,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329409,
+            "analog_value": 22730.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329432,
+            "analog_value": 26056.77,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329455,
+            "analog_value": 24811.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329478,
+            "analog_value": 23425.13,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329502,
+            "analog_value": 26294.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329525,
+            "analog_value": 27636.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329548,
+            "analog_value": 26462.73,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329571,
+            "analog_value": 28126.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329594,
+            "analog_value": 27839.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329618,
+            "analog_value": 27677.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329641,
+            "analog_value": 29541.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329664,
+            "analog_value": 30897.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329687,
+            "analog_value": 30539.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329710,
+            "analog_value": 30094.64,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329734,
+            "analog_value": 30710.77,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329757,
+            "analog_value": 31213.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329780,
+            "analog_value": 29033.84,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329803,
+            "analog_value": 30262.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329826,
+            "analog_value": 30292.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329850,
+            "analog_value": 31000.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329873,
+            "analog_value": 33931.32,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329896,
+            "analog_value": 33650.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329919,
+            "analog_value": 31145.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329942,
+            "analog_value": 34573.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329966,
+            "analog_value": 35203.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603329989,
+            "analog_value": 35711.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330012,
+            "analog_value": 30901.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330035,
+            "analog_value": 34537.69,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330058,
+            "analog_value": 36684.24,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330082,
+            "analog_value": 28047.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330105,
+            "analog_value": 33900.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330128,
+            "analog_value": 33590.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330151,
+            "analog_value": 29758.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330174,
+            "analog_value": 31589.12,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330198,
+            "analog_value": 35609.75,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330221,
+            "analog_value": 31811.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330244,
+            "analog_value": 30097.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330267,
+            "analog_value": 29050.2,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330290,
+            "analog_value": 32804.83,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330314,
+            "analog_value": 31808.38,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330337,
+            "analog_value": 32394.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330360,
+            "analog_value": 31990.69,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330383,
+            "analog_value": 29888.24,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330406,
+            "analog_value": 33543.6,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330430,
+            "analog_value": 29795.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330453,
+            "analog_value": 29125.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330476,
+            "analog_value": 32314.88,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330499,
+            "analog_value": 32838.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330522,
+            "analog_value": 26372.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330546,
+            "analog_value": 29011.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330569,
+            "analog_value": 29122.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330592,
+            "analog_value": 28787.33,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330615,
+            "analog_value": 29692.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330638,
+            "analog_value": 29579.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330662,
+            "analog_value": 29941.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330685,
+            "analog_value": 27469.5,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330708,
+            "analog_value": 30856.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330731,
+            "analog_value": 32363.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330754,
+            "analog_value": 29502.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330777,
+            "analog_value": 28783.51,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330801,
+            "analog_value": 31925.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330824,
+            "analog_value": 26673.17,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330847,
+            "analog_value": 30433.66,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330870,
+            "analog_value": 29318.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330893,
+            "analog_value": 26385.18,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330917,
+            "analog_value": 29531.03,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330940,
+            "analog_value": 27178.12,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330963,
+            "analog_value": 28027.12,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603330986,
+            "analog_value": 26868.2,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331009,
+            "analog_value": 30881.23,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331033,
+            "analog_value": 27042.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331056,
+            "analog_value": 26519.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331079,
+            "analog_value": 27286.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331102,
+            "analog_value": 28157.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331125,
+            "analog_value": 24557.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331149,
+            "analog_value": 23687.8,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331172,
+            "analog_value": 28166.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331195,
+            "analog_value": 24387.82,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331218,
+            "analog_value": 24232.32,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331241,
+            "analog_value": 25533.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331265,
+            "analog_value": 24294.8,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331288,
+            "analog_value": 24000.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331311,
+            "analog_value": 24120.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331334,
+            "analog_value": 27345.02,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331357,
+            "analog_value": 23065.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331381,
+            "analog_value": 20365.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331404,
+            "analog_value": 21942.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331427,
+            "analog_value": 20246.13,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331450,
+            "analog_value": 25650.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331473,
+            "analog_value": 20226.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331497,
+            "analog_value": 17502.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331520,
+            "analog_value": 20486.55,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331543,
+            "analog_value": 16230.92,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331566,
+            "analog_value": 18847.75,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331589,
+            "analog_value": 17326.18,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331613,
+            "analog_value": 18820.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331636,
+            "analog_value": 15367.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331659,
+            "analog_value": 13451.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331682,
+            "analog_value": 15704.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331705,
+            "analog_value": 13829.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603331729,
+            "analog_value": 12294.54,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331752,
+            "analog_value": 10253.73,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331775,
+            "analog_value": 8260.428,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331798,
+            "analog_value": 5727.426,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331821,
+            "analog_value": 4693.648,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331845,
+            "analog_value": 4086.858,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331868,
+            "analog_value": 4100.605,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331891,
+            "analog_value": 3428.517,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331914,
+            "analog_value": 2555.189,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331937,
+            "analog_value": 2259.914,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331961,
+            "analog_value": 1592.777,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603331984,
+            "analog_value": 1561.646,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603332007,
+            "analog_value": 2007.253,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603332030,
+            "analog_value": 3358.526,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603332053,
+            "analog_value": 5372.872,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603332077,
+            "analog_value": 22384.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332100,
+            "analog_value": 22839.82,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332123,
+            "analog_value": 22524.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332146,
+            "analog_value": 24733.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332169,
+            "analog_value": 26922.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332193,
+            "analog_value": 22571.76,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332216,
+            "analog_value": 22641.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332239,
+            "analog_value": 23014.39,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332262,
+            "analog_value": 25357.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332285,
+            "analog_value": 25684.39,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332309,
+            "analog_value": 23588.47,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332332,
+            "analog_value": 26440.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332355,
+            "analog_value": 26426.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332378,
+            "analog_value": 23758.47,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332401,
+            "analog_value": 23844.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332425,
+            "analog_value": 24312.09,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332448,
+            "analog_value": 24303.91,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332471,
+            "analog_value": 27022.32,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332494,
+            "analog_value": 25733.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332517,
+            "analog_value": 25168.84,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332540,
+            "analog_value": 22547.59,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332564,
+            "analog_value": 24541.32,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332587,
+            "analog_value": 25134.8,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332610,
+            "analog_value": 24307.73,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332633,
+            "analog_value": 24366.89,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332656,
+            "analog_value": 25792.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332680,
+            "analog_value": 26271.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332703,
+            "analog_value": 25622.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332726,
+            "analog_value": 25113.39,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332749,
+            "analog_value": 24250.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332772,
+            "analog_value": 25484.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332796,
+            "analog_value": 25123.58,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332819,
+            "analog_value": 22037.59,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332842,
+            "analog_value": 21698.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332865,
+            "analog_value": 22866.75,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332888,
+            "analog_value": 20235.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332912,
+            "analog_value": 20891.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332935,
+            "analog_value": 21727.05,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332958,
+            "analog_value": 22166.88,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603332981,
+            "analog_value": 19513.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333004,
+            "analog_value": 24512.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333028,
+            "analog_value": 20154.64,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333051,
+            "analog_value": 22188.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333074,
+            "analog_value": 22473.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333097,
+            "analog_value": 22292.43,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333120,
+            "analog_value": 23655.07,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333144,
+            "analog_value": 21127.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333167,
+            "analog_value": 20858.65,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333190,
+            "analog_value": 10853.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603333213,
+            "analog_value": 3393.391,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333236,
+            "analog_value": 2498.52,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333260,
+            "analog_value": 2012.376,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333283,
+            "analog_value": 1532.445,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333306,
+            "analog_value": 1215.489,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333329,
+            "analog_value": 1021.98,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333352,
+            "analog_value": 865.7117,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333376,
+            "analog_value": 809.6057,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333399,
+            "analog_value": 882.9571,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333422,
+            "analog_value": 676.3571,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333445,
+            "analog_value": 562.0527,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333468,
+            "analog_value": 586.6965,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333492,
+            "analog_value": 708.9865,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333515,
+            "analog_value": 712.496,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333538,
+            "analog_value": 769.029,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333561,
+            "analog_value": 906.2422,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333584,
+            "analog_value": 758.1164,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333608,
+            "analog_value": 724.4065,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333631,
+            "analog_value": 728.9766,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333654,
+            "analog_value": 790.2009,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333677,
+            "analog_value": 703.6066,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333700,
+            "analog_value": 711.1203,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333724,
+            "analog_value": 600.7245,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333747,
+            "analog_value": 527.2538,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333770,
+            "analog_value": 673.8465,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333793,
+            "analog_value": 847.0306,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333816,
+            "analog_value": 818.225,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333840,
+            "analog_value": 690.6618,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333863,
+            "analog_value": 724.4535,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333886,
+            "analog_value": 548.5305,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333909,
+            "analog_value": 720.1296,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333932,
+            "analog_value": 644.4884,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333956,
+            "analog_value": 677.2198,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603333979,
+            "analog_value": 692.1626,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334002,
+            "analog_value": 784.6163,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334025,
+            "analog_value": 658.6851,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334048,
+            "analog_value": 656.7856,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334072,
+            "analog_value": 680.6442,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334095,
+            "analog_value": 747.1064,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334118,
+            "analog_value": 641.0283,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334141,
+            "analog_value": 731.671,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334164,
+            "analog_value": 901.1349,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334188,
+            "analog_value": 669.9146,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334211,
+            "analog_value": 625.6464,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334234,
+            "analog_value": 660.0306,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334257,
+            "analog_value": 649.1725,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334280,
+            "analog_value": 566.5402,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334303,
+            "analog_value": 682.2951,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334327,
+            "analog_value": 680.395,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334350,
+            "analog_value": 621.4227,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334373,
+            "analog_value": 702.6067,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334396,
+            "analog_value": 775.4856,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334419,
+            "analog_value": 528.5475,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334443,
+            "analog_value": 669.362,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334466,
+            "analog_value": 587.07,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334489,
+            "analog_value": 648.48,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334512,
+            "analog_value": 530.5391,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334535,
+            "analog_value": 577.6078,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334559,
+            "analog_value": 595.4155,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334582,
+            "analog_value": 821.6296,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334605,
+            "analog_value": 613.4149,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334628,
+            "analog_value": 584.1761,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334651,
+            "analog_value": 632.671,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334675,
+            "analog_value": 867.5825,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334698,
+            "analog_value": 782.2308,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334721,
+            "analog_value": 627.8318,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334744,
+            "analog_value": 805.0107,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334767,
+            "analog_value": 833.779,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334791,
+            "analog_value": 696.3828,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334814,
+            "analog_value": 959.1906,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334837,
+            "analog_value": 634.8948,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334860,
+            "analog_value": 747.7541,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334883,
+            "analog_value": 700.5674,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334907,
+            "analog_value": 656.9897,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334930,
+            "analog_value": 993.0311,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334953,
+            "analog_value": 647.0533,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334976,
+            "analog_value": 707.4738,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603334999,
+            "analog_value": 755.0361,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335023,
+            "analog_value": 669.6443,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335046,
+            "analog_value": 708.0665,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335069,
+            "analog_value": 618.8727,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335092,
+            "analog_value": 1018.055,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335115,
+            "analog_value": 735.5488,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335139,
+            "analog_value": 728.0828,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335162,
+            "analog_value": 804.0021,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335185,
+            "analog_value": 555.4221,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335208,
+            "analog_value": 658.5496,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335231,
+            "analog_value": 664.3171,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335255,
+            "analog_value": 599.1654,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335278,
+            "analog_value": 709.2386,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335301,
+            "analog_value": 693.4005,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335324,
+            "analog_value": 574.5006,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335347,
+            "analog_value": 703.752,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335371,
+            "analog_value": 657.83,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335394,
+            "analog_value": 674.3668,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335417,
+            "analog_value": 799.7521,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335440,
+            "analog_value": 640.3351,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335463,
+            "analog_value": 712.3104,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335487,
+            "analog_value": 632.5748,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335510,
+            "analog_value": 605.9852,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335533,
+            "analog_value": 739.6232,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335556,
+            "analog_value": 612.6616,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335579,
+            "analog_value": 703.0571,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335603,
+            "analog_value": 720.4171,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335626,
+            "analog_value": 668.5299,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335649,
+            "analog_value": 705.6788,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335672,
+            "analog_value": 677.7032,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335695,
+            "analog_value": 1057.622,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335719,
+            "analog_value": 703.4377,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335742,
+            "analog_value": 670.4119,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335765,
+            "analog_value": 706.1345,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335788,
+            "analog_value": 728.7318,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335811,
+            "analog_value": 666.9777,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335835,
+            "analog_value": 791.2369,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335858,
+            "analog_value": 647.781,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335881,
+            "analog_value": 959.4155,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335904,
+            "analog_value": 836.3034,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335927,
+            "analog_value": 587.6172,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335951,
+            "analog_value": 748.7703,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335974,
+            "analog_value": 728.809,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603335997,
+            "analog_value": 856.6406,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336020,
+            "analog_value": 767.9362,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336043,
+            "analog_value": 634.2047,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336066,
+            "analog_value": 707.9067,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336090,
+            "analog_value": 652.7299,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336113,
+            "analog_value": 830.3024,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336136,
+            "analog_value": 634.7391,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336159,
+            "analog_value": 681.0697,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336182,
+            "analog_value": 741.6648,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336206,
+            "analog_value": 869.7529,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336229,
+            "analog_value": 805.972,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336252,
+            "analog_value": 732.2894,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336275,
+            "analog_value": 713.984,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336298,
+            "analog_value": 802.5245,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336322,
+            "analog_value": 703.7018,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336345,
+            "analog_value": 625.7018,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336368,
+            "analog_value": 656.3512,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336391,
+            "analog_value": 767.0463,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336414,
+            "analog_value": 714.7131,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336438,
+            "analog_value": 753.2242,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336461,
+            "analog_value": 693.0526,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336484,
+            "analog_value": 834.8797,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336507,
+            "analog_value": 724.2944,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336530,
+            "analog_value": 667.7755,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336554,
+            "analog_value": 670.3409,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336577,
+            "analog_value": 707.1893,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336600,
+            "analog_value": 617.7823,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336623,
+            "analog_value": 646.9917,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336646,
+            "analog_value": 580.1196,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336670,
+            "analog_value": 763.9772,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336693,
+            "analog_value": 591.696,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336716,
+            "analog_value": 800.1342,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336739,
+            "analog_value": 684.7812,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336762,
+            "analog_value": 639.0135,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336786,
+            "analog_value": 819.6216,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336809,
+            "analog_value": 674.3909,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336832,
+            "analog_value": 715.5753,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336855,
+            "analog_value": 614.4908,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336878,
+            "analog_value": 873.7634,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336902,
+            "analog_value": 744.1693,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336925,
+            "analog_value": 776.1567,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336948,
+            "analog_value": 813.8237,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336971,
+            "analog_value": 669.3981,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603336994,
+            "analog_value": 660.3508,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337018,
+            "analog_value": 674.7132,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337041,
+            "analog_value": 676.2086,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337064,
+            "analog_value": 642.7739,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337087,
+            "analog_value": 927.0312,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337110,
+            "analog_value": 552.1085,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337134,
+            "analog_value": 911.1242,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337157,
+            "analog_value": 785.8684,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337180,
+            "analog_value": 725.6772,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337203,
+            "analog_value": 627.5094,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337226,
+            "analog_value": 719.9606,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337250,
+            "analog_value": 740.5596,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337273,
+            "analog_value": 776.2261,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337296,
+            "analog_value": 624.9143,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337319,
+            "analog_value": 797.9991,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337342,
+            "analog_value": 720.785,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337366,
+            "analog_value": 607.9033,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337389,
+            "analog_value": 759.5245,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337412,
+            "analog_value": 659.3196,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337435,
+            "analog_value": 727.0911,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337458,
+            "analog_value": 751.0954,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337482,
+            "analog_value": 799.9091,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337505,
+            "analog_value": 676.9784,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337528,
+            "analog_value": 711.5993,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337551,
+            "analog_value": 799.8869,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337574,
+            "analog_value": 868.975,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337598,
+            "analog_value": 720.1956,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337621,
+            "analog_value": 843.1514,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337644,
+            "analog_value": 854.2901,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337667,
+            "analog_value": 721.5794,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337690,
+            "analog_value": 564.35,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337714,
+            "analog_value": 678.2844,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337737,
+            "analog_value": 989.9395,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337760,
+            "analog_value": 718.3515,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337783,
+            "analog_value": 738.2928,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337806,
+            "analog_value": 886.7728,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337830,
+            "analog_value": 768.024,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337853,
+            "analog_value": 855.0049,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337876,
+            "analog_value": 1018.914,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337899,
+            "analog_value": 614.3219,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337922,
+            "analog_value": 1108.481,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337945,
+            "analog_value": 690.5893,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337969,
+            "analog_value": 833.5333,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603337992,
+            "analog_value": 837.6791,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338015,
+            "analog_value": 621.0663,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338038,
+            "analog_value": 886.7702,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338061,
+            "analog_value": 723.0367,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338085,
+            "analog_value": 654.6213,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338108,
+            "analog_value": 820.6696,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338131,
+            "analog_value": 578.6221,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338154,
+            "analog_value": 1016.953,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338177,
+            "analog_value": 694.8008,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338201,
+            "analog_value": 766.7261,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338224,
+            "analog_value": 859.3978,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338247,
+            "analog_value": 724.3433,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338270,
+            "analog_value": 905.1599,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338293,
+            "analog_value": 783.4033,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338317,
+            "analog_value": 670.5828,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338340,
+            "analog_value": 789.6878,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338363,
+            "analog_value": 702.894,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338386,
+            "analog_value": 596.493,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338409,
+            "analog_value": 557.2814,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338433,
+            "analog_value": 751.561,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338456,
+            "analog_value": 787.6625,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338479,
+            "analog_value": 675.7363,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338502,
+            "analog_value": 937.6628,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338525,
+            "analog_value": 736.4238,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338549,
+            "analog_value": 726.498,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338572,
+            "analog_value": 736.7413,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338595,
+            "analog_value": 710.869,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338618,
+            "analog_value": 649.7596,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338641,
+            "analog_value": 683.5567,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338665,
+            "analog_value": 635.4565,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338688,
+            "analog_value": 658.8433,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338711,
+            "analog_value": 640.7753,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338734,
+            "analog_value": 669.0245,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338757,
+            "analog_value": 832.181,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338781,
+            "analog_value": 678.8409,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338804,
+            "analog_value": 532.4209,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338827,
+            "analog_value": 740.8571,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338850,
+            "analog_value": 771.985,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338873,
+            "analog_value": 892.8341,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338897,
+            "analog_value": 763.1697,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603338920,
+            "analog_value": 15683.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603338943,
+            "analog_value": 24033.83,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603338966,
+            "analog_value": 20623.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603338989,
+            "analog_value": 21832.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339013,
+            "analog_value": 21246.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339036,
+            "analog_value": 21644.77,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339059,
+            "analog_value": 21143.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339082,
+            "analog_value": 23754.1,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339105,
+            "analog_value": 21577.58,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339129,
+            "analog_value": 23278.51,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339152,
+            "analog_value": 23698.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339175,
+            "analog_value": 26736.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339198,
+            "analog_value": 25802.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339221,
+            "analog_value": 20204.04,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339245,
+            "analog_value": 23436.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339268,
+            "analog_value": 23365.4,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339291,
+            "analog_value": 23718.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339314,
+            "analog_value": 21282.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339337,
+            "analog_value": 26735.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339361,
+            "analog_value": 24378.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339384,
+            "analog_value": 23191.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339407,
+            "analog_value": 24184.43,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339430,
+            "analog_value": 25623.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339453,
+            "analog_value": 24316.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339477,
+            "analog_value": 23926.33,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339500,
+            "analog_value": 23754.34,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339523,
+            "analog_value": 22456.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339546,
+            "analog_value": 23685.17,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339569,
+            "analog_value": 23677.5,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339593,
+            "analog_value": 21184.83,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339616,
+            "analog_value": 21930.92,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339639,
+            "analog_value": 26761.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339662,
+            "analog_value": 23736.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339685,
+            "analog_value": 21095.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339709,
+            "analog_value": 21909.89,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339732,
+            "analog_value": 21085.52,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339755,
+            "analog_value": 22047.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339778,
+            "analog_value": 23644.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339801,
+            "analog_value": 25849.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339824,
+            "analog_value": 24530.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339848,
+            "analog_value": 26881.47,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339871,
+            "analog_value": 27483.69,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339894,
+            "analog_value": 22971.23,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339917,
+            "analog_value": 23742.08,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339940,
+            "analog_value": 23646.45,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339964,
+            "analog_value": 22750.45,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603339987,
+            "analog_value": 25466.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340010,
+            "analog_value": 24319.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340033,
+            "analog_value": 21583.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340056,
+            "analog_value": 23709.2,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340080,
+            "analog_value": 27565.55,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340103,
+            "analog_value": 21423.91,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340126,
+            "analog_value": 22118.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340149,
+            "analog_value": 23075.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340172,
+            "analog_value": 24344.4,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340196,
+            "analog_value": 19876.42,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340219,
+            "analog_value": 24032.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340242,
+            "analog_value": 23035.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340265,
+            "analog_value": 21274.05,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340288,
+            "analog_value": 23475.4,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340312,
+            "analog_value": 24893.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340335,
+            "analog_value": 23055.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340358,
+            "analog_value": 24561.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340381,
+            "analog_value": 22820.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340404,
+            "analog_value": 22061.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340428,
+            "analog_value": 24493.97,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340451,
+            "analog_value": 22654.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340474,
+            "analog_value": 21805.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340497,
+            "analog_value": 23701.88,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340520,
+            "analog_value": 23735.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340544,
+            "analog_value": 22016.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340567,
+            "analog_value": 23363.73,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340590,
+            "analog_value": 25164.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340613,
+            "analog_value": 22866.1,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340636,
+            "analog_value": 22298.17,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340660,
+            "analog_value": 24691.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340683,
+            "analog_value": 22361.09,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340706,
+            "analog_value": 19507.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340729,
+            "analog_value": 21859.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340752,
+            "analog_value": 21879.47,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340776,
+            "analog_value": 21067.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340799,
+            "analog_value": 22171.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340822,
+            "analog_value": 21305.63,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340845,
+            "analog_value": 20615.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340868,
+            "analog_value": 23002.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340892,
+            "analog_value": 21457.42,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340915,
+            "analog_value": 20960.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340938,
+            "analog_value": 20916.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340961,
+            "analog_value": 21653.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603340984,
+            "analog_value": 20179.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341008,
+            "analog_value": 20849.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341031,
+            "analog_value": 24033.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341054,
+            "analog_value": 23999.12,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341077,
+            "analog_value": 22717.13,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341100,
+            "analog_value": 24961.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341124,
+            "analog_value": 23877.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341147,
+            "analog_value": 21924.43,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341170,
+            "analog_value": 23084.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341193,
+            "analog_value": 24195.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341216,
+            "analog_value": 22673.71,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341240,
+            "analog_value": 22823.04,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341263,
+            "analog_value": 22042.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341286,
+            "analog_value": 24911.92,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341309,
+            "analog_value": 23786.13,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341332,
+            "analog_value": 22545.12,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341356,
+            "analog_value": 21857.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341379,
+            "analog_value": 21662.69,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341402,
+            "analog_value": 23620.97,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341425,
+            "analog_value": 23789.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341448,
+            "analog_value": 23861.82,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341472,
+            "analog_value": 23484.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341495,
+            "analog_value": 25276.66,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341518,
+            "analog_value": 22903.39,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341541,
+            "analog_value": 26206.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341564,
+            "analog_value": 27514.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341587,
+            "analog_value": 24263.83,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341611,
+            "analog_value": 23724,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341634,
+            "analog_value": 25967.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341657,
+            "analog_value": 23809.92,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341680,
+            "analog_value": 23490.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341703,
+            "analog_value": 24884.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341727,
+            "analog_value": 24096.52,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341750,
+            "analog_value": 22992.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341773,
+            "analog_value": 23307.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341796,
+            "analog_value": 23605.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341819,
+            "analog_value": 22746.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341843,
+            "analog_value": 24123.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341866,
+            "analog_value": 21720.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341889,
+            "analog_value": 21693.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341912,
+            "analog_value": 23652.91,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341935,
+            "analog_value": 23649.55,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341959,
+            "analog_value": 21416.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603341982,
+            "analog_value": 24002.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342005,
+            "analog_value": 22437.58,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342028,
+            "analog_value": 21073.24,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342051,
+            "analog_value": 21992.18,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342075,
+            "analog_value": 23598.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342098,
+            "analog_value": 22637.5,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342121,
+            "analog_value": 22842.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342144,
+            "analog_value": 21032.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342167,
+            "analog_value": 20805.52,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342191,
+            "analog_value": 22809.22,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342214,
+            "analog_value": 22878.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342237,
+            "analog_value": 20922.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342260,
+            "analog_value": 23659.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342283,
+            "analog_value": 23815.22,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342307,
+            "analog_value": 23490.39,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342330,
+            "analog_value": 22649.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342353,
+            "analog_value": 23572.05,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342376,
+            "analog_value": 22350.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342399,
+            "analog_value": 20807.32,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342423,
+            "analog_value": 21579.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342446,
+            "analog_value": 24650.92,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342469,
+            "analog_value": 22965.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342492,
+            "analog_value": 22573.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342515,
+            "analog_value": 22965.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342539,
+            "analog_value": 22551.45,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342562,
+            "analog_value": 22714.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342585,
+            "analog_value": 23531.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342608,
+            "analog_value": 22340.38,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342631,
+            "analog_value": 22403.05,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342655,
+            "analog_value": 24362.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342678,
+            "analog_value": 20692.97,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342701,
+            "analog_value": 19941.64,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342724,
+            "analog_value": 22196.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342747,
+            "analog_value": 23801.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342771,
+            "analog_value": 19862.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342794,
+            "analog_value": 19212.71,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342817,
+            "analog_value": 17998.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342840,
+            "analog_value": 19899.05,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342863,
+            "analog_value": 22360.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342887,
+            "analog_value": 18869.4,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342910,
+            "analog_value": 16396.38,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342933,
+            "analog_value": 13707.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342956,
+            "analog_value": 17972.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603342979,
+            "analog_value": 14283.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603343026,
+            "analog_value": 11983.7,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343049,
+            "analog_value": 11522.46,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343072,
+            "analog_value": 8457.073,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343095,
+            "analog_value": 6162.776,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343119,
+            "analog_value": 4775.915,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343142,
+            "analog_value": 3472.42,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343165,
+            "analog_value": 2646.38,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343188,
+            "analog_value": 1728.724,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343211,
+            "analog_value": 1457.784,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343234,
+            "analog_value": 1030.758,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343258,
+            "analog_value": 819.712,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343281,
+            "analog_value": 728.5962,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343304,
+            "analog_value": 792.9949,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343327,
+            "analog_value": 716.9979,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343350,
+            "analog_value": 649.9579,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343374,
+            "analog_value": 731.3816,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343397,
+            "analog_value": 825.6141,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343420,
+            "analog_value": 646.9681,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343443,
+            "analog_value": 770.0041,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343466,
+            "analog_value": 758.4294,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343490,
+            "analog_value": 711.607,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343513,
+            "analog_value": 906.1507,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343536,
+            "analog_value": 767.0948,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343559,
+            "analog_value": 695.7482,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343582,
+            "analog_value": 618.6485,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343606,
+            "analog_value": 692.7678,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343629,
+            "analog_value": 639.6257,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343652,
+            "analog_value": 507.3081,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343675,
+            "analog_value": 478.5762,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343698,
+            "analog_value": 682.2872,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343722,
+            "analog_value": 751.6862,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343745,
+            "analog_value": 719.3271,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343768,
+            "analog_value": 713.123,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343791,
+            "analog_value": 657.2222,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343814,
+            "analog_value": 6038.243,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343838,
+            "analog_value": 10173.02,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603343861,
+            "analog_value": 18172.71,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603343884,
+            "analog_value": 19386.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603343907,
+            "analog_value": 18444.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603343930,
+            "analog_value": 17536.58,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603343954,
+            "analog_value": 16424.51,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603343977,
+            "analog_value": 16003.88,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344000,
+            "analog_value": 17846.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344023,
+            "analog_value": 16634.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344046,
+            "analog_value": 17266.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344070,
+            "analog_value": 19233.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344093,
+            "analog_value": 20603.43,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344116,
+            "analog_value": 20438.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344139,
+            "analog_value": 15482.74,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344162,
+            "analog_value": 17480.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344186,
+            "analog_value": 22179.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344209,
+            "analog_value": 19293.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344232,
+            "analog_value": 19300.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344255,
+            "analog_value": 21042.8,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344278,
+            "analog_value": 19715.03,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344302,
+            "analog_value": 18557.85,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344325,
+            "analog_value": 18326.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344348,
+            "analog_value": 22788.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344371,
+            "analog_value": 18924.63,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344394,
+            "analog_value": 20262.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344418,
+            "analog_value": 21811.64,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344441,
+            "analog_value": 22261.73,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344464,
+            "analog_value": 18997.63,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344487,
+            "analog_value": 21291.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344510,
+            "analog_value": 22676.71,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344534,
+            "analog_value": 19850.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344557,
+            "analog_value": 20419.5,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344580,
+            "analog_value": 23477.55,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344603,
+            "analog_value": 19217.66,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344626,
+            "analog_value": 21988.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344650,
+            "analog_value": 22587.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344673,
+            "analog_value": 21922.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344696,
+            "analog_value": 15469.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603344719,
+            "analog_value": 3520.445,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344742,
+            "analog_value": 2593.133,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344766,
+            "analog_value": 2199.272,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344789,
+            "analog_value": 1676.501,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344812,
+            "analog_value": 1172.88,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344835,
+            "analog_value": 1158.216,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344858,
+            "analog_value": 999.9448,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344882,
+            "analog_value": 849.7119,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344905,
+            "analog_value": 904.2016,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344928,
+            "analog_value": 680.5944,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344951,
+            "analog_value": 658.6395,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344974,
+            "analog_value": 728.5707,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603344997,
+            "analog_value": 708.1286,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345021,
+            "analog_value": 870.7307,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345044,
+            "analog_value": 652.9069,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345067,
+            "analog_value": 586.0006,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345090,
+            "analog_value": 748.9165,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345114,
+            "analog_value": 630.4694,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345137,
+            "analog_value": 975.1896,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345160,
+            "analog_value": 709.2511,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345183,
+            "analog_value": 793.3784,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345206,
+            "analog_value": 995.6663,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345229,
+            "analog_value": 861.5655,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345253,
+            "analog_value": 839.7855,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345276,
+            "analog_value": 710.9776,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345299,
+            "analog_value": 608.5605,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345322,
+            "analog_value": 714.234,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345345,
+            "analog_value": 553.8793,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345369,
+            "analog_value": 650.9044,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345392,
+            "analog_value": 679.8876,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345415,
+            "analog_value": 916.0317,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345438,
+            "analog_value": 620.7123,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345461,
+            "analog_value": 569.5593,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345485,
+            "analog_value": 681.3738,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345508,
+            "analog_value": 710.8174,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345531,
+            "analog_value": 709.5461,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345554,
+            "analog_value": 701.4152,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345577,
+            "analog_value": 615.7227,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345601,
+            "analog_value": 687.4253,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345624,
+            "analog_value": 695.8184,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345647,
+            "analog_value": 796.4675,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345670,
+            "analog_value": 678.8347,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345693,
+            "analog_value": 826.7705,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345717,
+            "analog_value": 746.4761,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345740,
+            "analog_value": 702.6718,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345763,
+            "analog_value": 798.6886,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345786,
+            "analog_value": 696.8452,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345809,
+            "analog_value": 768.692,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345833,
+            "analog_value": 770.7592,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345856,
+            "analog_value": 746.3518,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345879,
+            "analog_value": 778.5632,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345902,
+            "analog_value": 640.7467,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345925,
+            "analog_value": 719.6569,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345949,
+            "analog_value": 717.387,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345972,
+            "analog_value": 702.1234,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603345995,
+            "analog_value": 777.2671,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346018,
+            "analog_value": 791.9226,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346041,
+            "analog_value": 771.6483,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346065,
+            "analog_value": 925.5341,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346088,
+            "analog_value": 620.0031,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346111,
+            "analog_value": 749.9257,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346134,
+            "analog_value": 733.0332,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346157,
+            "analog_value": 779.5458,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346181,
+            "analog_value": 566.1876,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346204,
+            "analog_value": 610.3282,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346227,
+            "analog_value": 748.154,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346250,
+            "analog_value": 943.866,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346273,
+            "analog_value": 745.1724,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346297,
+            "analog_value": 831.9877,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346320,
+            "analog_value": 855.4805,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346343,
+            "analog_value": 825.3156,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346366,
+            "analog_value": 620.8274,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346389,
+            "analog_value": 996.5196,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346413,
+            "analog_value": 676.0382,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346436,
+            "analog_value": 805.2267,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346459,
+            "analog_value": 853.5824,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346482,
+            "analog_value": 735.5234,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346505,
+            "analog_value": 733.0792,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346529,
+            "analog_value": 699.5025,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346552,
+            "analog_value": 687.2574,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346575,
+            "analog_value": 680.8703,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346598,
+            "analog_value": 677.7726,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346621,
+            "analog_value": 729.1482,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346645,
+            "analog_value": 815.7805,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346668,
+            "analog_value": 837.2136,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346691,
+            "analog_value": 645.8601,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346714,
+            "analog_value": 990.1633,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346737,
+            "analog_value": 1042.774,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346760,
+            "analog_value": 673.2238,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346784,
+            "analog_value": 1076.289,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346807,
+            "analog_value": 787.645,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346830,
+            "analog_value": 637.3398,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346853,
+            "analog_value": 702.0184,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346876,
+            "analog_value": 753.3441,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346900,
+            "analog_value": 817.7883,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346923,
+            "analog_value": 629.1035,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346946,
+            "analog_value": 820.0314,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346969,
+            "analog_value": 847.8477,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603346992,
+            "analog_value": 914.858,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347016,
+            "analog_value": 595.9916,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347039,
+            "analog_value": 881.3627,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347062,
+            "analog_value": 628.9724,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347085,
+            "analog_value": 674.8781,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347108,
+            "analog_value": 579.6044,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347132,
+            "analog_value": 694.4254,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347155,
+            "analog_value": 810.6752,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347178,
+            "analog_value": 749.4174,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347201,
+            "analog_value": 722.3844,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347224,
+            "analog_value": 853.4887,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347248,
+            "analog_value": 654.1185,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347271,
+            "analog_value": 678.1712,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347294,
+            "analog_value": 624.5926,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347317,
+            "analog_value": 780.8693,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347340,
+            "analog_value": 691.2466,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347364,
+            "analog_value": 652.212,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347387,
+            "analog_value": 758.6662,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347410,
+            "analog_value": 703.2422,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347433,
+            "analog_value": 805.2061,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347456,
+            "analog_value": 592.2963,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347480,
+            "analog_value": 590.6508,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347503,
+            "analog_value": 767.9305,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347526,
+            "analog_value": 806.5046,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347549,
+            "analog_value": 783.1096,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347572,
+            "analog_value": 764.3091,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347596,
+            "analog_value": 698.397,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347619,
+            "analog_value": 859.8374,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347642,
+            "analog_value": 630.0815,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347665,
+            "analog_value": 753.3267,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347688,
+            "analog_value": 843.5484,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347712,
+            "analog_value": 765.8347,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347735,
+            "analog_value": 611.5421,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347758,
+            "analog_value": 707.5389,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347781,
+            "analog_value": 681.8951,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347804,
+            "analog_value": 830.0138,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347828,
+            "analog_value": 610.4244,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347851,
+            "analog_value": 574.0578,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347874,
+            "analog_value": 969.4447,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347897,
+            "analog_value": 837.9899,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347920,
+            "analog_value": 734.5764,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347944,
+            "analog_value": 532.9766,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347967,
+            "analog_value": 833.8932,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603347990,
+            "analog_value": 919.6201,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348013,
+            "analog_value": 738.916,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348036,
+            "analog_value": 666.9036,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348060,
+            "analog_value": 660.3213,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348083,
+            "analog_value": 617.1186,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348106,
+            "analog_value": 683.9883,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348129,
+            "analog_value": 541.277,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348152,
+            "analog_value": 669.8619,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348176,
+            "analog_value": 662.9286,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348199,
+            "analog_value": 722.3426,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348222,
+            "analog_value": 818.4771,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348245,
+            "analog_value": 684.6234,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348268,
+            "analog_value": 809.3228,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348292,
+            "analog_value": 883.5587,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348315,
+            "analog_value": 710.871,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348338,
+            "analog_value": 830.8188,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348361,
+            "analog_value": 731.1595,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348384,
+            "analog_value": 741.8522,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348408,
+            "analog_value": 842.7626,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348431,
+            "analog_value": 805.1603,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348454,
+            "analog_value": 841.0993,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348477,
+            "analog_value": 1055.304,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348500,
+            "analog_value": 779.4138,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348523,
+            "analog_value": 986.5315,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348547,
+            "analog_value": 626.1064,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348570,
+            "analog_value": 910.229,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348593,
+            "analog_value": 788.9756,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348616,
+            "analog_value": 808.0972,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348639,
+            "analog_value": 817.9623,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348663,
+            "analog_value": 734.4838,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348686,
+            "analog_value": 558.9304,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348709,
+            "analog_value": 549.9902,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348732,
+            "analog_value": 642.774,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348755,
+            "analog_value": 736.8632,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348779,
+            "analog_value": 613.7922,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348802,
+            "analog_value": 599.5168,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348825,
+            "analog_value": 631.1738,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348848,
+            "analog_value": 673.2434,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348871,
+            "analog_value": 796.9264,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348895,
+            "analog_value": 605.4547,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348918,
+            "analog_value": 820.3329,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348941,
+            "analog_value": 940.4902,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348964,
+            "analog_value": 835.6,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603348987,
+            "analog_value": 813.8103,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603349011,
+            "analog_value": 835.7546,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603349034,
+            "analog_value": 1080.804,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603349057,
+            "analog_value": 729.5593,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603349080,
+            "analog_value": 610.4665,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603349103,
+            "analog_value": 10206.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349127,
+            "analog_value": 24619.88,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349150,
+            "analog_value": 21980.52,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349173,
+            "analog_value": 25165.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349196,
+            "analog_value": 21703.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349219,
+            "analog_value": 22800.02,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349243,
+            "analog_value": 26301.13,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349266,
+            "analog_value": 23985.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349289,
+            "analog_value": 22314.6,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349312,
+            "analog_value": 25557.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349335,
+            "analog_value": 23573.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349359,
+            "analog_value": 22028.08,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349382,
+            "analog_value": 21340.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349405,
+            "analog_value": 23396.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349428,
+            "analog_value": 22798.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349451,
+            "analog_value": 22238.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349475,
+            "analog_value": 25789.04,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349498,
+            "analog_value": 22665.71,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349521,
+            "analog_value": 23858.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349544,
+            "analog_value": 25742.22,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349567,
+            "analog_value": 23464.33,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349591,
+            "analog_value": 23445.22,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349614,
+            "analog_value": 25088.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349637,
+            "analog_value": 21602.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349660,
+            "analog_value": 23715.73,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349683,
+            "analog_value": 26683.26,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349707,
+            "analog_value": 23442.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349730,
+            "analog_value": 21808.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349753,
+            "analog_value": 24428.6,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349776,
+            "analog_value": 23765.58,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349799,
+            "analog_value": 24203.02,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349823,
+            "analog_value": 22037.03,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349846,
+            "analog_value": 23900.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349869,
+            "analog_value": 25351.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349892,
+            "analog_value": 23017.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349915,
+            "analog_value": 25223.59,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349939,
+            "analog_value": 26338.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349962,
+            "analog_value": 24163.64,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603349985,
+            "analog_value": 23871.91,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350008,
+            "analog_value": 26330.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350031,
+            "analog_value": 25346.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350055,
+            "analog_value": 23043.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350078,
+            "analog_value": 23538.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350101,
+            "analog_value": 22670.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350124,
+            "analog_value": 24869.09,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350147,
+            "analog_value": 22870.55,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350171,
+            "analog_value": 24627.6,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350194,
+            "analog_value": 24327.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350217,
+            "analog_value": 22570.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350240,
+            "analog_value": 24485.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350263,
+            "analog_value": 27948.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350287,
+            "analog_value": 25912.5,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350310,
+            "analog_value": 23170.86,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350333,
+            "analog_value": 25002.57,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350356,
+            "analog_value": 22207.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350379,
+            "analog_value": 22161.75,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350402,
+            "analog_value": 21531.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350426,
+            "analog_value": 21987.05,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350449,
+            "analog_value": 26019.34,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350472,
+            "analog_value": 25191.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350495,
+            "analog_value": 24125.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350518,
+            "analog_value": 26791.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350542,
+            "analog_value": 25430.46,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350565,
+            "analog_value": 25394.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350588,
+            "analog_value": 27053.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350611,
+            "analog_value": 25849.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350634,
+            "analog_value": 23044.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350658,
+            "analog_value": 24886.75,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350681,
+            "analog_value": 24345.91,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350704,
+            "analog_value": 26132.03,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350727,
+            "analog_value": 22733.01,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350750,
+            "analog_value": 26012.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350774,
+            "analog_value": 26361.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350797,
+            "analog_value": 23686.28,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350820,
+            "analog_value": 26898.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350843,
+            "analog_value": 24215.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350866,
+            "analog_value": 23156.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350890,
+            "analog_value": 24290.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350913,
+            "analog_value": 22325.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350936,
+            "analog_value": 25296.17,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350959,
+            "analog_value": 25556.83,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603350982,
+            "analog_value": 24364.76,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351006,
+            "analog_value": 24151.66,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351029,
+            "analog_value": 24164.34,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351052,
+            "analog_value": 23166.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351075,
+            "analog_value": 24720.38,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351098,
+            "analog_value": 25290.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351122,
+            "analog_value": 22595.62,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351145,
+            "analog_value": 24876.29,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351168,
+            "analog_value": 23071,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351191,
+            "analog_value": 23881.11,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351214,
+            "analog_value": 22058.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351238,
+            "analog_value": 26407.2,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351261,
+            "analog_value": 23907.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351284,
+            "analog_value": 23119.7,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351307,
+            "analog_value": 27746.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351330,
+            "analog_value": 23389.82,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351354,
+            "analog_value": 22851.37,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351377,
+            "analog_value": 23588.08,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351400,
+            "analog_value": 22802.55,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351423,
+            "analog_value": 24365.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351446,
+            "analog_value": 23034.34,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351470,
+            "analog_value": 24089.6,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351493,
+            "analog_value": 22307.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351516,
+            "analog_value": 23802.09,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351539,
+            "analog_value": 25191.21,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351562,
+            "analog_value": 21096.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351586,
+            "analog_value": 23336.74,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351609,
+            "analog_value": 23681.16,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351632,
+            "analog_value": 24988.64,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351655,
+            "analog_value": 22114.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351678,
+            "analog_value": 22190.06,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351702,
+            "analog_value": 24798.45,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351725,
+            "analog_value": 22362.88,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351748,
+            "analog_value": 23464.93,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351771,
+            "analog_value": 26949.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351794,
+            "analog_value": 23358.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351818,
+            "analog_value": 25661.65,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351841,
+            "analog_value": 23157.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351864,
+            "analog_value": 22649.79,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351887,
+            "analog_value": 24553.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351910,
+            "analog_value": 24192.97,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351934,
+            "analog_value": 23603.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351957,
+            "analog_value": 25239.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603351980,
+            "analog_value": 25460.68,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352003,
+            "analog_value": 22854.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352026,
+            "analog_value": 23662.72,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352050,
+            "analog_value": 24736.96,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352073,
+            "analog_value": 26787.36,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352096,
+            "analog_value": 24976.31,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352119,
+            "analog_value": 22757.47,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352142,
+            "analog_value": 24142.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352165,
+            "analog_value": 21975.51,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352189,
+            "analog_value": 25044.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352212,
+            "analog_value": 25403.52,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352235,
+            "analog_value": 22697.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352258,
+            "analog_value": 24430.09,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352281,
+            "analog_value": 25577.9,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352305,
+            "analog_value": 21922.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352328,
+            "analog_value": 23158.98,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352351,
+            "analog_value": 23329.04,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352374,
+            "analog_value": 22507.81,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352397,
+            "analog_value": 23089.61,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352421,
+            "analog_value": 24466.73,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352444,
+            "analog_value": 21138.13,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352467,
+            "analog_value": 24392.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352490,
+            "analog_value": 22358.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352513,
+            "analog_value": 22181.09,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352537,
+            "analog_value": 22770.45,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352560,
+            "analog_value": 23819.63,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352583,
+            "analog_value": 24811.44,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352606,
+            "analog_value": 22541.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352629,
+            "analog_value": 24171.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352653,
+            "analog_value": 26214.76,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352676,
+            "analog_value": 25279.94,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352699,
+            "analog_value": 22223.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352722,
+            "analog_value": 25525.67,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352745,
+            "analog_value": 23632.27,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352769,
+            "analog_value": 24898.83,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352792,
+            "analog_value": 24378.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352815,
+            "analog_value": 22071.53,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352838,
+            "analog_value": 23662.85,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352861,
+            "analog_value": 22279.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352885,
+            "analog_value": 22057.78,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352908,
+            "analog_value": 23031.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603352993,
+            "analog_value": 23184.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353010,
+            "analog_value": 24621.8,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353027,
+            "analog_value": 22989.95,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353044,
+            "analog_value": 21924.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353061,
+            "analog_value": 23756.19,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353078,
+            "analog_value": 25623.47,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353094,
+            "analog_value": 23104.39,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353111,
+            "analog_value": 23628.15,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353127,
+            "analog_value": 24040.49,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353143,
+            "analog_value": 24311.16,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353163,
+            "analog_value": 23733.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353186,
+            "analog_value": 25557.82,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353209,
+            "analog_value": 22559.45,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353233,
+            "analog_value": 22904.25,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353256,
+            "analog_value": 24063.69,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353279,
+            "analog_value": 22642.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353302,
+            "analog_value": 24648.24,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353325,
+            "analog_value": 23762.08,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353349,
+            "analog_value": 24756.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353372,
+            "analog_value": 24770.3,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353395,
+            "analog_value": 22874.24,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353418,
+            "analog_value": 24443.56,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353441,
+            "analog_value": 25715.16,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353465,
+            "analog_value": 21770.87,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353488,
+            "analog_value": 13161.35,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353511,
+            "analog_value": 13497.77,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353534,
+            "analog_value": 13295.88,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353557,
+            "analog_value": 15105.41,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353581,
+            "analog_value": 13551.14,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353604,
+            "analog_value": 14170.81,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353627,
+            "analog_value": 13227.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353650,
+            "analog_value": 12451.18,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353673,
+            "analog_value": 13508.5,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353697,
+            "analog_value": 12472.48,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353720,
+            "analog_value": 11749.02,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353743,
+            "analog_value": 12916.92,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353766,
+            "analog_value": 13685.33,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353789,
+            "analog_value": 11862.11,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353813,
+            "analog_value": 13534.97,
+            "digital_value": 0
+        },
+        {
+            "timestamp": 1764603353836,
+            "analog_value": 15884.84,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353859,
+            "analog_value": 14797.99,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353882,
+            "analog_value": 14417.54,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353905,
+            "analog_value": 14994.63,
+            "digital_value": 1
+        },
+        {
+            "timestamp": 1764603353929,
+            "analog_value": 16444.62,
+            "digital_value": 1
+        }
+    ]
+}
