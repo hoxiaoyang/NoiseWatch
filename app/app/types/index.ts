@@ -10,11 +10,12 @@ export interface ComplaintFormData {
 
 export interface NoiseMatch {
   id: string;
-  offendingBlock: string;
-  offendingUnit: string;
+  houseName: string;
   timestamp: string;
   confidenceScore: number;
   description: string;
+  startTime?: string; // Earliest timestamp when combining multiple records
+  endTime?: string; // Latest timestamp when combining multiple records
 }
 
 export interface IdentityVerification {

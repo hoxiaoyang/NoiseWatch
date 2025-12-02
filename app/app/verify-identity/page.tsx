@@ -147,20 +147,52 @@ export default function VerifyIdentityPage() {
               <div className="mb-6 p-5 bg-gray-50 border border-gray-200 rounded-lg">
                 <h4 className="text-base font-semibold text-gray-900 mb-4">Selected Noise Record:</h4>
                 <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                    <span className="text-sm text-gray-600">Noise Detected:</span>
+                    <span className="text-sm font-medium text-gray-900">
+                      {selectedMatch.description}
+                    </span>
+                  </div>
                   <div className="flex justify-between items-center">
                     <span className="text-sm text-gray-600">Location:</span>
                     <span className="text-sm font-medium text-gray-900">
-                      Block {selectedMatch.offendingBlock}, Unit {selectedMatch.offendingUnit}
+                      {selectedMatch.houseName}
                     </span>
                   </div>
+                  {selectedMatch.startTime && selectedMatch.endTime ? (
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Time Range:</span>
+                      <span className="text-sm font-medium text-gray-900">
+                        {new Date(selectedMatch.startTime).toLocaleString('en-SG', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                        {' - '}
+                        {new Date(selectedMatch.endTime).toLocaleString('en-SG', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Time:</span>
+                      <span className="text-sm font-medium text-gray-900">
+                        {new Date(selectedMatch.timestamp).toLocaleString('en-SG', {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit'
+                        })}
+                      </span>
+                    </div>
+                  )}
                   <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Time:</span>
-                    <span className="text-sm font-medium text-gray-900">
-                      {new Date(selectedMatch.timestamp).toLocaleString('en-SG')}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-sm text-gray-600">Confidence:</span>
+                    <span className="text-sm text-gray-600">Confidence Score:</span>
                     <span className="text-sm font-medium text-gray-900">
                       {selectedMatch.confidenceScore}%
                     </span>

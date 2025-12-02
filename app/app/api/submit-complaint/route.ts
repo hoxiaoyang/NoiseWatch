@@ -17,8 +17,7 @@ import { NextRequest, NextResponse } from 'next/server';
  *   },
  *   selectedMatch: {
  *     id: string,
- *     offendingBlock: string,
- *     offendingUnit: string,
+ *     houseName: string,
  *     timestamp: string,
  *     confidenceScore: number,
  *     description: string
