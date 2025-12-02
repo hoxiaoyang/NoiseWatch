@@ -22,14 +22,54 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
 
   const [errors, setErrors] = useState<Partial<Record<string, string>>>({});
   const [isFetchingAddress, setIsFetchingAddress] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+
+  // Load form data from sessionStorage on mount (if user navigated back)
+  useEffect(() => {
+    const storedData = sessionStorage.getItem('complaintData');
+    if (storedData) {
+      try {
+        const parsedData: ComplaintFormData = JSON.parse(storedData);
+        
+        // Restore form data
+        setFormData({
+          address: parsedData.address || '',
+          unitNumber: parsedData.unitNumber || '',
+          startTime: parsedData.startTime || '',
+          endTime: parsedData.endTime || '',
+          description: parsedData.description || '',
+        });
+
+        // Restore selectedOption and customNoise based on description
+        const desc = parsedData.description?.toLowerCase() || '';
+        if (desc === 'shouting' || desc === 'shout') {
+          setSelectedOption('Shouting');
+          setCustomNoise('');
+        } else if (desc === 'drilling' || desc === 'drill') {
+          setSelectedOption('Drilling');
+          setCustomNoise('');
+        } else if (parsedData.description && parsedData.description.trim()) {
+          // If description exists but doesn't match predefined options, it's "Other"
+          setSelectedOption('Other');
+          setCustomNoise(parsedData.description);
+        }
+      } catch (error) {
+        console.error('Error loading form data from sessionStorage:', error);
+      }
+    }
+    setIsInitialLoad(false);
+  }, []); // Only run on mount
 
   // Auto-fetch address from OneMap when postal code reaches 6 digits
+  // Skip auto-fetch during initial load from sessionStorage
   useEffect(() => {
+    if (isInitialLoad) return; // Don't auto-fetch during initial load
+    
     const v = formData.address.trim();
     if (/^\d{6}$/.test(v)) {
       fetchAddressByPostalCode(v);
     }
-  }, [formData.address]);
+  }, [formData.address, isInitialLoad]);
 
   // OneMap API fetch (JS version of your Python code)
   const fetchAddressByPostalCode = async (postalCode: string) => {

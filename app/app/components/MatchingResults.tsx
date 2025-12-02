@@ -9,6 +9,7 @@ interface MatchingResultsProps {
   matches: NoiseMatch[];
   onSelectMatch: (match: NoiseMatch) => void;
   isLoading?: boolean;
+  totalRecords?: number; // Total records from all houses (regardless of noise class)
 }
 
 interface DescriptionGroup {
@@ -27,31 +28,17 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
   matches,
   onSelectMatch,
   isLoading = false,
+  totalRecords,
 }) => {
-  // Get noise class from description (reverse mapping)
-  const getNoiseClassFromDescription = (description: string): number => {
-    const desc = description.toLowerCase();
-    if (desc.includes('shout') || desc.includes('shouting')) {
-      return 1; // shout
-    }
-    if (desc.includes('drill') || desc.includes('drilling')) {
-      return 2; // drill
-    }
-    return 0; // background or other
-  };
-
-  // Calculate confidence score based on number of records and noise class
-  const calculateConfidenceScore = (recordCount: number, description: string): number => {
-    // Get noise class score: 80 for drill (class 2), 60 for shout (class 1), 40 for background/other (class 0)
-    const noiseClass = getNoiseClassFromDescription(description);
-    const noiseClassScore = noiseClass >= 2 ? 80 : noiseClass >= 1 ? 60 : 40;
+  // Calculate confidence score based on ratio of records for this noiseClass to total records from all houses
+  const calculateConfidenceScore = (recordCount: number, totalRecordsAllHouses: number): number => {
+    // Calculate ratio: number of records for this noiseClass / total records from all houseNames
+    // Convert to percentage (0-100 scale)
+    const recordRatioScore = totalRecordsAllHouses > 0 
+      ? (recordCount / totalRecordsAllHouses) * 100 
+      : 0;
     
-    // Normalize record count to 0-100 scale (cap at 10 records = 100)
-    // Formula: min(recordCount * 10, 100)
-    const recordCountScore = Math.min(recordCount * 10, 100);
-    
-    // Calculate final confidence: (recordCount * 0.6) + (noiseClassScore * 0.4)
-    const confidence = (recordCountScore * 0.6) + (noiseClassScore * 0.4);
+    const confidence = recordRatioScore;
     
     // Round and ensure it's between 0 and 100
     return Math.round(Math.min(100, Math.max(0, confidence)));
@@ -59,6 +46,9 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
 
   // Group matches by houseName, then by description within each house
   const groupedMatches = useMemo(() => {
+    // Use totalRecords from API (from get_house_without_label) or fallback to matches.length
+    const totalRecordsAllHouses = totalRecords ?? matches.length;
+    
     // First group by houseName
     const houseGroups = new Map<string, NoiseMatch[]>();
     
@@ -86,8 +76,8 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
       const descriptionGroups: DescriptionGroup[] = Array.from(descriptionGroupsMap.entries()).map(([description, descRecords]) => {
         // Sort records by timestamp (most recent first)
         descRecords.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime());
-        // Calculate confidence based on number of records and noise class
-        const calculatedConfidence = calculateConfidenceScore(descRecords.length, description);
+        // Calculate confidence based on ratio of records for this noiseClass to total records from all houses
+        const calculatedConfidence = calculateConfidenceScore(descRecords.length, totalRecordsAllHouses);
         return { description, records: descRecords, maxConfidence: calculatedConfidence };
       });
       
@@ -104,7 +94,7 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
     result.sort((a, b) => b.maxConfidence - a.maxConfidence);
     
     return result;
-  }, [matches]);
+  }, [matches, totalRecords]);
 
   const formatTimestamp = (timestamp: string) => {
     const date = new Date(timestamp);

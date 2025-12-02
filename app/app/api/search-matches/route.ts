@@ -43,10 +43,10 @@ function unixToIsoTimestamp(unixTimestamp: number): string {
 function getNoiseClassFromDescription(description: string): number | null {
   const desc = description.toLowerCase();
   
-  if (desc.includes('shout') || desc.includes('shouting') || desc.includes('yell') || desc.includes('yelling')) {
+  if (desc.includes('shout') || desc.includes('shouting')) {
     return 1; // shout
   }
-  if (desc.includes('drill') || desc.includes('drilling') || desc.includes('renovation') || desc.includes('construction')) {
+  if (desc.includes('drill') || desc.includes('drilling')) {
     return 2; // drill
   }
   
@@ -70,21 +70,22 @@ function getDescriptionFromNoiseClass(noiseClass: number): string {
 }
 
 // Transform Lambda response from get_house_without_label to NoiseMatch format
+// Returns both matches and total record count
 function transformLambdaResponseToMatches(
   responseData: any,
   body: any,
   startTimestamp?: number,
   endTimestamp?: number
-): NoiseMatch[] {
+): { matches: NoiseMatch[]; totalRecords: number } {
   const matches: NoiseMatch[] = [];
-  
-  // Calculate timestamps if not provided (for mock data)
-  const startTs = startTimestamp || Math.floor(new Date(body.startTime).getTime() / 1000);
-  const endTs = endTimestamp || Math.floor(new Date(body.endTime).getTime() / 1000);
+  let totalRecords = 0;
   
   if (responseData.houses) {
     for (const [houseName, noiseEvents] of Object.entries(responseData.houses)) {
       const events = Array.isArray(noiseEvents) ? noiseEvents : [];
+      
+      // Count total records (all events regardless of noise class)
+      totalRecords += events.length;
       
       for (const event of events) {
         matches.push({
@@ -101,7 +102,7 @@ function transformLambdaResponseToMatches(
   // Note: Confidence scores will be calculated in MatchingResults component
   // No sorting needed here since grouping will be done client-side
   
-  return matches;
+  return { matches, totalRecords };
 }
 
 // Transform Lambda response from get_house (with noise class) to NoiseMatch format
@@ -211,13 +212,14 @@ export async function POST(request: NextRequest) {
       }
       
       // Transform to NoiseMatch format (same logic as below)
-      const matches = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
+      const { matches: mockMatches, totalRecords: mockTotalRecords } = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
       
       return NextResponse.json(
         { 
-          matches,
-          message: matches.length > 0 
-            ? `Found ${matches.length} matching noise record(s) (MOCK DATA - Noise Class ${noiseClass})` 
+          matches: mockMatches,
+          totalRecords: mockTotalRecords,
+          message: mockMatches.length > 0 
+            ? `Found ${mockMatches.length} matching noise record(s) (MOCK DATA - Noise Class ${noiseClass})` 
             : 'No matching noise records found in the specified time range'
         },
         { status: 200 }
@@ -230,6 +232,7 @@ export async function POST(request: NextRequest) {
     const useGetHouseEndpoint = noiseClass !== null && getHouseEndpoint;
     
     let matches: NoiseMatch[] = [];
+    let totalRecords = 0;
     let endpointUsed = '';
 
     // Try get_house endpoint first if we have a noise class and the endpoint is configured
@@ -262,15 +265,8 @@ export async function POST(request: NextRequest) {
           matches = transformGetHouseResponseToMatches(responseData, body, noiseClass, startTimestamp, endTimestamp);
           endpointUsed = `get_house (noiseClass=${noiseClass})`;
           
-          if (matches.length > 0) {
-            return NextResponse.json(
-              { 
-                matches,
-                message: `Found ${matches.length} matching noise record(s) using noise class filter (${noiseClass})`
-              },
-              { status: 200 }
-            );
-          }
+          // Still need to get total records from get_house_without_label for confidence calculation
+          // This will be done in the fallback section below
         } else {
           console.warn(`get_house endpoint returned ${lambdaResponse.status}, falling back to get_house_without_label`);
         }
@@ -342,13 +338,58 @@ export async function POST(request: NextRequest) {
         : lambdaData.body;
     }
 
-    // Transform Lambda response to NoiseMatch format
-    matches = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
+    // If we already called get_house_without_label, use the result
+    if (endpointUsed === 'get_house_without_label' || !endpointUsed) {
+      const { matches: transformedMatches, totalRecords: transformedTotalRecords } = transformLambdaResponseToMatches(responseData, body, startTimestamp, endTimestamp);
+      matches = transformedMatches;
+      totalRecords = transformedTotalRecords;
+    } else {
+      // If we used get_house, we need to call get_house_without_label to get total count
+      // This ensures we have the total count regardless of noise class
+      try {
+        const totalCountUrl = new URL(lambdaEndpoint);
+        totalCountUrl.searchParams.set('startTimestamp', startTimestamp.toString());
+        totalCountUrl.searchParams.set('endTimestamp', endTimestamp.toString());
+        
+        const totalCountResponse = await fetch(totalCountUrl.toString(), {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        if (totalCountResponse.ok) {
+          const totalCountData = await totalCountResponse.json();
+          let totalCountResponseData = totalCountData;
+          if (totalCountData.statusCode && totalCountData.body) {
+            totalCountResponseData = typeof totalCountData.body === 'string' 
+              ? JSON.parse(totalCountData.body) 
+              : totalCountData.body;
+          }
+          
+          // Calculate total records from get_house_without_label response
+          if (totalCountResponseData.houses) {
+            for (const [, noiseEvents] of Object.entries(totalCountResponseData.houses)) {
+              const events = Array.isArray(noiseEvents) ? noiseEvents : [];
+              totalRecords += events.length;
+            }
+          }
+        } else {
+          // Fallback to matches.length if we can't get total count
+          totalRecords = matches.length;
+        }
+      } catch (error) {
+        console.warn('Failed to get total record count, using matches.length as fallback:', error);
+        totalRecords = matches.length;
+      }
+    }
+    
     endpointUsed = endpointUsed || 'get_house_without_label';
 
     return NextResponse.json(
       { 
         matches,
+        totalRecords,
         message: matches.length > 0 
           ? `Found ${matches.length} matching noise record(s)${endpointUsed ? ` (via ${endpointUsed})` : ''}` 
           : 'No matching noise records found in the specified time range'

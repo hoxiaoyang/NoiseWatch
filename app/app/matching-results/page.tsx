@@ -12,6 +12,7 @@ export default function MatchingResultsPage() {
   const [isSearching, setIsSearching] = useState(true);
   const [complaintData, setComplaintData] = useState<ComplaintFormData | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [totalRecords, setTotalRecords] = useState<number | undefined>(undefined);
 
   useEffect(() => {
     const storedData = sessionStorage.getItem('complaintData');
@@ -67,6 +68,7 @@ export default function MatchingResultsPage() {
 
         const data = await response.json();
         setMatches(data.matches || []);
+        setTotalRecords(data.totalRecords); // Store total records for confidence calculation
         setError(null); // Clear error on success
       } catch (error) {
         console.error('Error searching for matches:', error);
@@ -232,6 +234,7 @@ export default function MatchingResultsPage() {
             matches={matches}
             onSelectMatch={handleSelectMatch}
             isLoading={isSearching}
+            totalRecords={totalRecords}
           />
         </div>
       </main>
