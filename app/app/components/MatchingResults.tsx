@@ -44,6 +44,13 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
     return Math.round(Math.min(100, Math.max(0, confidence)));
   };
 
+  // Filter out "Background noise" records
+  const filteredMatches = useMemo(() => {
+    return matches.filter(
+      (match) => match.description.toLowerCase() !== 'background noise'
+    );
+  }, [matches]);
+
   // Group matches by houseName, then by description within each house
   const groupedMatches = useMemo(() => {
     // Use totalRecords from API (from get_house_without_label) or fallback to matches.length
@@ -52,7 +59,7 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
     // First group by houseName
     const houseGroups = new Map<string, NoiseMatch[]>();
     
-    matches.forEach((match) => {
+    filteredMatches.forEach((match) => {
       if (!houseGroups.has(match.houseName)) {
         houseGroups.set(match.houseName, []);
       }
@@ -94,7 +101,7 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
     result.sort((a, b) => b.maxConfidence - a.maxConfidence);
     
     return result;
-  }, [matches, totalRecords]);
+  }, [filteredMatches, totalRecords]);
 
   const formatTimestamp = (timestamp: string) => {
     const date = new Date(timestamp);
@@ -133,7 +140,7 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
     );
   }
 
-  if (matches.length === 0) {
+  if (filteredMatches.length === 0) {
     return null;
   }
 
@@ -142,7 +149,7 @@ export const MatchingResults: React.FC<MatchingResultsProps> = ({
       <CardHeader>
         <CardTitle>Matching Noise Records Found</CardTitle>
         <p className="text-sm text-gray-600 mt-2">
-          We found {groupedMatches.length} {groupedMatches.length === 1 ? 'location' : 'locations'} with {matches.length} {matches.length === 1 ? 'record' : 'records'} from our noise monitoring system.
+          We found {groupedMatches.length} {groupedMatches.length === 1 ? 'location' : 'locations'} with {filteredMatches.length} {filteredMatches.length === 1 ? 'record' : 'records'} from our noise monitoring system.
           Please review and select the record that matches your complaint.
         </p>
       </CardHeader>
