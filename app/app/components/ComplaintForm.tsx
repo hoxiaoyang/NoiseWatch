@@ -229,10 +229,14 @@ export const ComplaintForm: React.FC<ComplaintFormProps> = ({ onSubmit, isLoadin
                   }
                 }}
                 disabled={isLoading}
-                className={`border rounded px-3 py-2 w-full mb-2 ${
+                className={`border rounded px-3 py-2 w-full mb-2 transition-all ${
                   errors.description && selectedOption !== 'Other' 
                     ? 'border-red-500 focus:border-red-500 focus:ring-red-500' 
                     : 'border-gray-300'
+                } ${
+                  isLoading 
+                    ? 'bg-gray-50 text-gray-600 cursor-not-allowed' 
+                    : 'bg-white text-gray-900'
                 }`}
               >
                 <option value="">Select</option>
