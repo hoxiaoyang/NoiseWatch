@@ -9,8 +9,8 @@ import datetime
 MQTT_ADDRESS = '127.0.0.1'
 MQTT_USER = 'cloud'
 MQTT_PASSWORD = '123'
-DATA_TOPIC = 'esp1_data'      # Data from ESP32
-STATUS_TOPIC = 'esp1_identifier' # ID from ESP32
+DATA_TOPIC = 'Block_57_unit_801_data'      # Data from ESP32
+STATUS_TOPIC = 'Block_57_unit_801' # ID from ESP32
 API_ENDPOINT = ""
 
 # --- GLOBAL STATE ---

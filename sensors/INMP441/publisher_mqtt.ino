@@ -19,8 +19,8 @@ const char* ssid = "YOUR_WIFI_SSID";
 const char* wifi_password = "YOUR_WIFI_PASS"; 
 const char* mqtt_server = "172.20.10.3";  
 
-const char* IDENTIFIER_TOPIC = "esp1_identifier";
-const char* DATA_TOPIC = "esp1_data";
+const char* IDENTIFIER_TOPIC = "Block_57_unit_801";
+const char* DATA_TOPIC = "Block_57_unit_801_data";
 const char* mqtt_username = "cloud"; 
 const char* mqtt_password = "123"; 
 const char* clientID = "Block 57 unit 801"; 
