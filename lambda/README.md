@@ -51,4 +51,16 @@ If the search is successful, it returns:
 `{`
   `"statusCode": 200,`
   `"body": "{"noiseClass": 2, "startTimestamp": 1763648995, "endTimestamp": 1764426595, "houses\": {"house_123": [{"house": "house_123", "timestamp": 1763648995, "noiseClass": 2}]}}"`
+
+`}`
+
+4. *fine_tune_noise_classification* endpoint:
+
+Trigger AWS SageMaker training job.
+
+If the training job has successfully started, it returns:
+
+`{`
+  `"statusCode": 200,`
+  `"body": "{\"message\": \"Training job started\", \"TrainingJobName\": \"noise-train-XXXXXXXXX\", \"TrainingJobArn\": \"arn:aws:sagemaker:ap-southeast-1:XXXXXXXXXXXX:training-job/noise-train-XXXXXXXXX\"}"`
 `}`
