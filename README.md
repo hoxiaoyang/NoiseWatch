@@ -1,37 +1,186 @@
 # NoiseWatcher
-Codebase for SUTD's 50.046 Cloud Computing and Internet of Things project
+*A Smart Noise Monitoring and Logging System for HDB Estates*
 
-To foster a safe and conducive living environment for residents in HDB flats, we propose the implementation of a Noise Classification and Logging System powered by IoT and cloud technologies.
+**SUTD 50.046 Cloud Computing and Internet of Things Project**
 
-Our solution comprises three main components:
+---
 
-## 1. Hardware: Smart Noise Monitoring
+## Problem Statement
 
-We deploy ESP32-based noise sensors outside each HDB unit to automatically detect and classify noise levels.
-These sensors record sound intensity (in decibels) and, through triangulation, can help identify the central source of noise.
-This system fills the gap where CCTV cameras may be insufficient and provides objective, timestamped noise evidence for disputes involving inconsiderate neighbours.
-Additionally, the same technology can be extended for domestic abuse detection, or construction noise management, supporting both residential safety and community well-being.
+Noise disputes in HDB flats are increasingly common, yet residents face significant challenges when attempting to resolve them. Current solutions rely heavily on manual evidence collection, which is often unverified and insufficient for formal complaints. CCTV systems cannot capture acoustic disturbances, and the burden of proof falls entirely on affected residents. This creates friction between neighbors, wastes administrative resources, and leaves genuine noise issues unresolved.
 
-Our project's code is organized into two main folders: `sensors` and `rpi`.
+## Solution Overview
 
-The `sensors` directory contains all our experiment code, including earlier tests with the KY-037 sensor and other setups. The final code used for the deployed system is inside the `INMP441` folder, specifically in the `file publisher_mqtt.py`. To begin, you must first edit this file to include the correct Wi-Fi details that the ESP32 should connect to. After uploading the code to the ESP32, you need to connect the ESP32 to the INMP441 sensor; you can follow the wiring guide in this video: https://www.youtube.com/watch?v=UkJIMCtsypo to allow the ESP32 to successfully receive sound data. This folder also holds older files, such as code under `esp32cam`, which were used when we tested replacing the standard ESP32 with an ESP32-CAM.
+To address these challenges and foster a safer, more harmonious living environment, we present **NoiseWatcher** - a smart, scalable, and privacy-preserving noise monitoring and logging system designed specifically for HDB estates. 
 
-The `Rpi` directory contains the core server-side processing logic. The main file, `get_MQTT_data.py`, should be placed and run continuously on the Raspberry Pi throughout the noise monitoring period. This script listens for data sent from the ESP32 using the MQTT protocol. It is responsible for filtering out relevant data frames and then sending the final, processed event summaries to the cloud for classification. To set up the RPi, you should first install the RPi OS using Imager, and ensure the RPi is connected to the same Wi-Fi network as the ESP32. Next, you must set up the MQTT broker service on the RPi; a detailed guide can be found here: https://diyi0t.com/microcontroller-to-raspberry-pi-wifi-mqtt-communication/. Once the RPi is running the MQTT broker and the `get_MQTT_data.py` script, simply power on the ESP32, and the sensors will automatically start collecting and transmitting data to the local server.
+Leveraging IoT sensors, cloud services, and machine learning, NoiseWatcher captures real-time acoustic data, classifies noise events, and securely stores verified logs for residents and administrators. Our solution automates evidence collection, enhances the accuracy of noise classification, and simplifies the dispute resolution process. 
 
-## 2. Software: Cloud-Integrated Complaint and Verification System
+With features such as sensor health monitoring, noise log verification, and retrainable ML models, NoiseWatcher offers a robust, end-to-end system that overcomes the limitations of existing tools while maintaining affordability, scalability, and user trust.
 
-Residents can submit noise complaints via a centralised web or mobile application by specifying the time and location of the disturbance.
-The system cross-references the report against the cloud-based noise logs to validate the complaint.
-Government and HDB officials can also access the data to identify unreported or recurring noise incidents, streamlining enforcement.
-This significantly reduces the need for residents to file formal police reports and minimises the need for on-site verification by officers, saving time and administrative resources.
+---
 
-## 3. Maintenance and Monitoring
+## Architecture Overview
 
-All ESP32 sensors are connected to the cloud infrastructure, allowing remote management and diagnostics.
-Periodic ping checks can be sent from the cloud to verify sensor functionality, ensuring the network remains operational.
-Any sensor tampering or malfunction (e.g., due to vandalism) can be detected immediately, eliminating the need for manual inspection and improving system reliability.
+NoiseWatcher is built on a three-tier architecture:
 
-Business Impact
+1. **IoT Layer**: INMP441 sensors deployed outside each HDB unit, connected to ESP32 microcontrollers
+2. **Edge Processing Layer**: Local servers (Raspberry Pi) in each block, running AWS Greengrass and MQTT broker
+3. **Cloud Layer**: AWS services including Lambda, DynamoDB, S3, API Gateway, and Cognito for processing, storage, and authentication
 
-This solution aligns closely with Singapore’s Smart Nation initiative, addressing the government’s interest in leveraging IoT and data-driven technologies for urban living improvements. Though a solution similar to this has been proposed, it has not been fleshed out or implemented, and our low-cost solution might help facilitate implementation.
-By providing accurate, automated, and privacy-conscious noise monitoring, this system promotes neighbourly accountability, assists in law enforcement processes, and contributes to the creation of a harmonious residential environment.
+---
+
+## Key Features
+
+Our solution is built around four key features that work together to provide accurate, reliable, and scalable noise monitoring for HDB estates.
+
+### Feature 1: Smart Noise Monitoring
+
+**Purpose**: Automated, privacy-preserving acoustic event detection and classification.
+
+**Implementation**:
+- **Hardware**: INMP441 sensors installed outside every housing unit capture acoustic events that cannot be observed through CCTV while preserving resident privacy
+- **Data Collection**: Sensors automatically collect data from 10pm to 8am every day
+- **Local Processing**: A local server (Raspberry Pi) is installed for every block, handling noise data from all sensors within that block
+- **AWS Integration**: Local servers are registered as AWS Greengrass IoT Core devices, authenticated with API keys from AWS API Gateway
+- **Resilient Protocol**: MQTT ensures devices continue collecting data even during internet disconnections, syncing when reconnected
+- **Intelligent Filtering**: All requests are filtered at the local server level to limit HTTP POST requests to the noise inference Lambda function
+- **Automated Classification**: Filtered noise logs above a threshold are sent to API Gateway, where Lambda functions perform ML inference and assign noise classifications
+- **Data Storage**: Classified noise logs are automatically stored in DynamoDB
+
+**Benefits**: Fully automated logging and classification reduces the burden on residents to manually collect noise data, which can be unverified and inaccurate.
+
+### Feature 2: Noise Log Verification
+
+**Purpose**: Trusted, authenticated noise record access for residents and administrators.
+
+**Implementation**:
+- **Centralized Platform**: Web and mobile application provides access to verified noise records
+- **Search Functionality**: Residents can search by timestamp range, location (unit number), and noise classification
+- **Direct Database Access**: Application queries DynamoDB directly for real-time, up-to-date noise logs
+- **Integrated Complaint Filing**: Residents can file complaints directly in the application using verified noise data as evidence
+
+**Benefits**: Convenient retrieval of authenticated noise logs anytime, anywhere, streamlining the complaint process and providing objective evidence for dispute resolution.
+
+### Feature 3: Retraining and Finetuning
+
+**Purpose**: Continuous improvement of ML model accuracy as new noise patterns emerge.
+
+**Implementation**:
+- **Administrator Access**: Dedicated admin login via AWS Cognito authentication
+- **Dual Training Modes**: Administrators can choose between fine-tuning existing models or full retraining
+- **Model Storage**: ML models are stored in S3 buckets for version control and deployment
+- **Containerized Training**: Docker containers encapsulate Python ML libraries and dependencies for consistent, reproducible training
+- **AWS SageMaker Integration**: Training pipelines deployed on SageMaker for scalable model development
+- **Automated Deployment**: Newly trained models are automatically deployed to Lambda inference functions
+
+**Benefits**: Abstracts manual ML model retraining efforts from administrators while ensuring the system adapts to evolving noise patterns and new noise classifications.
+
+### Feature 4: Maintenance and Monitoring
+
+**Purpose**: System reliability through proactive sensor health monitoring.
+
+**Implementation**:
+- **Device Registry**: DynamoDB database maintains records of all ESP32 sensors
+- **MQTT "Last Will"**: Leverages MQTT's "Time of Death" (Last Will and Testament) feature for automatic status detection
+- **Automatic Status Updates**: Local servers send Last Will messages to Lambda functions when sensors disconnect
+- **Real-time Status Tracking**: Sensor status (online/offline) is updated in DynamoDB in real-time
+- **Admin Dashboard**: Administrators can query Lambda functions to retrieve status of all sensors at a glance
+- **Proactive Maintenance**: Quick identification of faulty or unresponsive sensors enables timely replacements
+
+**Benefits**: Eliminates the need for manual sensor inspections, reduces system downtime, and ensures consistent monitoring coverage across all units.
+
+---
+
+## Project Structure
+
+All Documentation for each section is written in each folder's README.md.
+
+### `/app`
+Code for the UI of the Noise Complaint System (TypeScript). All backend functions are linked to AWS services.
+
+**To run this:**
+```bash
+npm install
+npm run dev
+```
+
+### `/aws_sagemaker`
+Code for the AWS SageMaker model finetuning instance (Python).
+- `train.py`: Training script for AWS SageMaker
+- `preprocessing.py`: Data preprocessing and feature extraction modules
+- `feature_extract.py`: Feature engineering for model training
+- Model evaluation and deployment logic
+
+### `/lambda`
+Code for all four deployed Lambda functions (Python):
+- Noise inference and classification
+- Sensor status monitoring
+- Model retraining triggers
+- Database query handlers
+
+### `/noise_prediction`
+Code and raw data for local training of the noise classification model (Python). 
+
+**Usage**: Run all cells in `train.ipynb` to inspect how training and evaluation is performed.
+
+Contains:
+- `train.ipynb`: Interactive notebook for model development
+- `/sample_data`: Training and test datasets
+- Feature extraction and preprocessing utilities
+
+### `/rpi`
+Code for script to be transferred to Raspberry Pi for MQTT (Python).
+- `get_MQTT_data.py`: Main script running continuously on Raspberry Pi
+  - Listens for MQTT data from ESP32 sensors
+  - Filters relevant data frames
+  - Forwards processed events to cloud for classification
+
+### `/sensors`
+Code for ESP32s to obtain data from sound sensors (C++).
+
+Contains all experiment code and sensor implementations:
+- **`/INMP441`**: Final production code
+  - `publisher_mqtt.py`: Main ESP32 firmware for data collection and transmission
+  - Configuration: Edit Wi-Fi credentials before uploading to ESP32
+- **`/esp32cam`**: Earlier tests with ESP32-CAM variant
+- **`/KY-037`**: Initial experiments with KY-037 sensor
+
+---
+
+## Technology Stack
+
+**Hardware**:
+- ESP32 microcontrollers
+- INMP441 I2S MEMS microphones
+- Raspberry Pi (local edge servers)
+
+**Cloud Services**:
+- AWS Lambda
+- Amazon DynamoDB
+- Amazon S3
+- AWS API Gateway
+- AWS SageMaker
+
+**Communication**:
+- MQTT protocol
+- REST APIs
+
+**Machine Learning**:
+- Python (scikit-learn, pandas, numpy)
+- Docker
+
+---
+
+## Business Impact
+
+NoiseWatcher aligns closely with Singapore's Smart Nation initiative, addressing the government's interest in leveraging IoT and data-driven technologies for urban living improvements. While similar solutions have been proposed, they have not been fully implemented or fleshed out. Our low-cost, scalable solution might help facilitate widespread implementation.
+
+**Key Benefits**:
+- **Automated Evidence Collection**: Reduces burden on residents
+- **Objective Verification**: Timestamped, classified noise logs provide reliable evidence
+- **Privacy-Preserving**: Audio data is processed locally; only classifications are stored
+- **Scalable**: Cloud-native architecture supports city-wide deployment
+- **Cost-Effective**: Affordable hardware and serverless computing minimize operational costs
+- **Proactive Enforcement**: Enables administrators to identify unreported recurring issues
+
+By providing accurate, automated, and privacy-conscious noise monitoring, NoiseWatcher promotes neighborly accountability, assists in law enforcement processes, and contributes to the creation of a harmonious residential environment.
