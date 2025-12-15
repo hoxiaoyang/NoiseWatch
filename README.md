@@ -26,6 +26,8 @@ NoiseWatcher is built on a three-tier architecture:
 1. **IoT Layer**: INMP441 sensors deployed outside each HDB unit, connected to ESP32 microcontrollers
 2. **Edge Processing Layer**: Local servers (Raspberry Pi) in each block, running AWS Greengrass and MQTT broker
 3. **Cloud Layer**: AWS services including Lambda, DynamoDB, S3, API Gateway, and Cognito for processing, storage, and authentication
+<img width="1002" height="717" alt="Screenshot 2025-12-15 at 21 42 53" src="https://github.com/user-attachments/assets/cce6f457-8697-4a60-9b3b-62345aabc8d7" />
+
 
 ---
 
