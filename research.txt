@@ -1,3 +1,0 @@
-Current methods:
-
-1. Tango Class 1 Sound Level Meter (expensive and requires a lot of power): https://geoscan.com.sg/our-services/noise-monitoring/
